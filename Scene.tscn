@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://chxcbblejwgh6"]
+
+[ext_resource type="Script" uid="uid://cbas8pnvi3stv" path="res://Scripts/chaos.gd" id="1_t6lng"]
+
+[node name="Node2D" type="Node2D"]
+
+[node name="Chaos" type="Node2D" parent="."]
+position = Vector2(557, 314)
+script = ExtResource("1_t6lng")
+run_in_editor = false
+initial_point_count = 10
+initial_point_radius = 5.0
+shape_scale = 200.0
+new_point_radius = 2.0
+timer_length = 0.005
