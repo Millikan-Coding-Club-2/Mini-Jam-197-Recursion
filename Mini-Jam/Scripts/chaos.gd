@@ -1,18 +1,23 @@
 @tool
 extends Node2D
 
+const RAINBOW = preload("uid://dtvhcsy5y1l65")
+
 ## Scene > Reload Saved Scene to restart script in editor
-@export var run_in_editor := true
+@export var run_in_editor := false
+@export var color_coded := true
+@export var default_color := Color.RED
 ## Minimum of 3
 @export var initial_point_count := 3
 @export var initial_point_radius := 10.0
-@export var point_color := Color.RED
+#@export var point_color := Color.RED
 ## Radius of the circumcircle of the regular polygon
 @export var shape_scale := 50.0
 @export var new_point_radius := 5.0
 
 var initial_points: PackedVector2Array
 var new_points: PackedVector2Array
+var new_point_colors: PackedColorArray
 # Should be automated by a script later
 @export var timer_length := 0.2
 var time := 0.0
@@ -28,16 +33,19 @@ func generate_polygon(num_points := 3, radius := 1.0, center := Vector2.ZERO):
 	return points
 	
 func draw_initial_points():
-	for point in initial_points:
-		draw_circle(point, initial_point_radius, point_color)
+	for i in range(initial_point_count):
+		var color = RAINBOW.sample(float(i) / initial_point_count) if color_coded else default_color
+		draw_circle(initial_points[i], initial_point_radius, color)
 		
 ## points is the vertices of the original polygon; current is the last point generated
 func get_next_point(points: PackedVector2Array, current: Vector2):
 	var amount = points.size()
-	var chosen = points[randi_range(0, amount - 1)]
+	var chosen_index = randi_range(0, amount - 1)
+	var chosen = points[chosen_index]
 	# https://beltoforion.de/en/recreational_mathematics/chaos_game.php
 	var factor = float(amount) / (amount + 3)
 	var next_point = current + (chosen - current) * factor
+	new_point_colors.append(RAINBOW.sample(float(chosen_index) / amount))
 	return next_point
 	
 func random_point_in_circle(radius: float, center := Vector2.ZERO) -> Vector2:
@@ -49,6 +57,7 @@ func _ready() -> void:
 	initial_points = generate_polygon(initial_point_count, shape_scale)
 	# Approximates random point in the shape by getting random point in circumcircle
 	new_points.append(random_point_in_circle(shape_scale))
+	new_point_colors.append(RAINBOW.sample(float(randi_range(0, initial_point_count)) / initial_point_count))
 	
 func _process(delta: float) -> void:
 	if not (Engine.is_editor_hint() and !run_in_editor):
@@ -62,11 +71,11 @@ func _process(delta: float) -> void:
 func _draw():
 	draw_initial_points()
 	# Draw new points
-	if new_points.size() == 1:
-		draw_circle(new_points[0], new_point_radius, point_color)
-	else:
-		for point in new_points:
-			draw_circle(point, new_point_radius, point_color)
+	#if new_points.size() == 1:
+		#draw_circle(new_points[0], new_point_radius, new_point_colors[0] if color_coded else default_color)
+	#else:
+	for i in range(new_points.size()):
+		draw_circle(new_points[i], new_point_radius, new_point_colors[i] if color_coded else default_color)
 	var new_point = get_next_point(initial_points, new_points[-1])
 	new_points.append(new_point)
 
