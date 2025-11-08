@@ -1,8 +1,123 @@
-[gd_scene load_steps=2 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=23 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="PackedScene" uid="uid://bcxs3ded30be7" path="res://Scenes/corner.tscn" id="1_jp0d8"]
+[ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
+[ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
+[ext_resource type="Texture2D" uid="uid://ds6r3tugpuybp" path="res://sprites/arrow.png" id="2_qswnl"]
+[ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
+[ext_resource type="PackedScene" uid="uid://e4wvge0sv6x" path="res://Scenes/home.tscn" id="4_khr67"]
+[ext_resource type="PackedScene" uid="uid://bd1tqte3oe08x" path="res://models/monitor/monitor.glb" id="4_qswnl"]
 
-[node name="Control" type="Control"]
+[sub_resource type="QuadMesh" id="QuadMesh_v3fvj"]
+size = Vector2(1.455, 1.175)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_v3fvj"]
+viewport_path = NodePath("monitors/monitor0/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qswnl"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_v3fvj")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qswnl"]
+viewport_path = NodePath("monitors/monitor1/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khr67"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_qswnl")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_khr67"]
+viewport_path = NodePath("monitors/monitor2/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7xl2"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_khr67")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_s7xl2"]
+viewport_path = NodePath("monitors/monitor3/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k5w"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_s7xl2")
+
+[sub_resource type="BoxMesh" id="BoxMesh_o8g73"]
+lightmap_size_hint = Vector2i(104, 156)
+size = Vector3(10, 10, 10)
+
+[sub_resource type="Animation" id="Animation_qswnl"]
+resource_name = "left"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.034906585, 0.7853982, 0), Vector3(-0.034906585, 1.5446163, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_khr67"]
+length = 0.001
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 0,
+"values": [Vector3(-0.034906585, 0.7853982, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_s7xl2"]
+resource_name = "right"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.034906585, 0.7853982, 0), Vector3(-0.034906585, -0.015707964, 0)]
+}
+
+[sub_resource type="Animation" id="Animation_g6k5w"]
+resource_name = "up"
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Camera3D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector3(-0.034906585, 0.7853982, 0), Vector3(0.51487213, 0.7853982, 0)]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_s7xl2"]
+_data = {
+&"RESET": SubResource("Animation_khr67"),
+&"left": SubResource("Animation_qswnl"),
+&"right": SubResource("Animation_s7xl2"),
+&"up": SubResource("Animation_g6k5w")
+}
+
+[node name="Game" type="Node3D"]
+script = ExtResource("1_v3fvj")
+
+[node name="Control" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -10,42 +125,193 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Corner" parent="." instance=ExtResource("1_jp0d8")]
+[node name="left" type="Control" parent="Control"]
 layout_mode = 1
+anchor_right = 0.043
+anchor_bottom = 0.147
+offset_left = 10.0
+offset_top = 388.0
+offset_right = 2.9679985
+offset_bottom = 488.472
+
+[node name="left" type="Sprite2D" parent="Control/left"]
+position = Vector2(18, 126.99999)
+scale = Vector2(1.3657407, 1.3657407)
+texture = ExtResource("2_qswnl")
+
+[node name="right" type="Control" parent="Control"]
+layout_mode = 1
+anchor_right = 0.043
+anchor_bottom = 0.147
+offset_left = 1015.0
+offset_top = 388.0
+offset_right = 1007.968
+offset_bottom = 488.472
+scale = Vector2(-1, 1)
+
+[node name="left" type="Sprite2D" parent="Control/right"]
+position = Vector2(18, 126.99999)
+scale = Vector2(1.3657407, 1.3657407)
+texture = ExtResource("2_qswnl")
+
+[node name="up" type="Control" parent="Control"]
+layout_mode = 1
+anchor_right = 0.043
+anchor_bottom = 0.147
+offset_left = 638.0
+offset_top = 9.0
+offset_right = 630.968
+offset_bottom = 109.472
+rotation = 1.5707964
+
+[node name="left" type="Sprite2D" parent="Control/up"]
+position = Vector2(18, 126.99999)
+scale = Vector2(1.3657407, 1.3657407)
+texture = ExtResource("2_qswnl")
+
+[node name="down" type="Control" parent="Control"]
+visible = false
+layout_mode = 1
+anchor_right = 0.043
+anchor_bottom = 0.147
+offset_left = 638.0
+offset_top = 1014.0
+offset_right = 630.968
+offset_bottom = 1114.472
+rotation = 1.5707964
+scale = Vector2(-1, 1)
+
+[node name="left" type="Sprite2D" parent="Control/down"]
+position = Vector2(18, 126.99999)
+scale = Vector2(1.3657407, 1.3657407)
+texture = ExtResource("2_qswnl")
+
+[node name="monitors" type="Node3D" parent="."]
+
+[node name="monitor0" parent="monitors" instance=ExtResource("4_qswnl")]
+
+[node name="SubViewport" type="SubViewport" parent="monitors/monitor0"]
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="Home" parent="monitors/monitor0/SubViewport" instance=ExtResource("4_khr67")]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor0"]
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
+mesh = SubResource("QuadMesh_v3fvj")
+surface_material_override/0 = SubResource("StandardMaterial3D_qswnl")
+
+[node name="monitor1" parent="monitors" instance=ExtResource("4_qswnl")]
+transform = Transform3D(0.9947315, 0.10251476, 0, -0.101876274, 0.9885361, -0.11143424, -0.011423655, 0.11084715, 0.9937718, -0.25744107, 2.297, -0.26846284)
+
+[node name="SubViewport" type="SubViewport" parent="monitors/monitor1"]
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="Screen1" parent="monitors/monitor1/SubViewport" instance=ExtResource("1_jp0d8")]
 anchor_left = 0.0
-anchor_top = 0.0
+anchor_top = 0.016448319
 anchor_right = 0.5
-anchor_bottom = 0.5
+anchor_bottom = 0.51845515
+offset_left = 260.0
+offset_top = 243.15692
+offset_right = 260.0
+offset_bottom = 243.15692
+scale = Vector2(2.249976, 2.249976)
 metadata/_edit_use_anchors_ = true
 
-[node name="Corner2" parent="." instance=ExtResource("1_jp0d8")]
-layout_mode = 1
+[node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor1"]
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
+mesh = SubResource("QuadMesh_v3fvj")
+surface_material_override/0 = SubResource("StandardMaterial3D_khr67")
+
+[node name="monitor2" parent="monitors" instance=ExtResource("4_qswnl")]
+transform = Transform3D(0.77933794, 0, -0.6266038, 0, 1, 0, 0.6266038, 0, 0.77933794, 4.937353, 0.012252092, -0.058248043)
+
+[node name="SubViewport" type="SubViewport" parent="monitors/monitor2"]
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="Screen2" parent="monitors/monitor2/SubViewport" instance=ExtResource("1_jp0d8")]
 anchor_left = 0.0
-anchor_top = 0.0
+anchor_top = 0.016448319
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 512.0
-offset_right = 512.0
+anchor_bottom = 0.51845515
+offset_left = 260.0
+offset_top = 243.15692
+offset_right = 260.0
+offset_bottom = 243.15692
+scale = Vector2(2.249976, 2.249976)
 metadata/_edit_use_anchors_ = true
 
-[node name="Corner3" parent="." instance=ExtResource("1_jp0d8")]
-layout_mode = 1
+[node name="Chaos" parent="monitors/monitor2/SubViewport/Screen2" index="1"]
+initial_point_count = 4
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor2"]
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
+mesh = SubResource("QuadMesh_v3fvj")
+surface_material_override/0 = SubResource("StandardMaterial3D_s7xl2")
+
+[node name="monitor3" parent="monitors" instance=ExtResource("4_qswnl")]
+transform = Transform3D(0.77955663, 0, 0.62633175, 0, 1, 0, -0.62633175, 0, 0.77955663, -3.822319, 0.012252092, 3.0600939)
+
+[node name="SubViewport" type="SubViewport" parent="monitors/monitor3"]
+handle_input_locally = false
+size = Vector2i(1024, 1024)
+render_target_update_mode = 4
+
+[node name="Screen3" parent="monitors/monitor3/SubViewport" instance=ExtResource("1_jp0d8")]
 anchor_left = 0.0
-anchor_top = 0.0
+anchor_top = 0.016448319
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_top = 512.0
-offset_bottom = 512.0
+anchor_bottom = 0.51845515
+offset_left = 260.0
+offset_top = 243.15692
+offset_right = 260.0
+offset_bottom = 243.15692
+scale = Vector2(2.249976, 2.249976)
 metadata/_edit_use_anchors_ = true
 
-[node name="Corner4" parent="." instance=ExtResource("1_jp0d8")]
-layout_mode = 1
-anchor_left = 0.0
-anchor_top = 0.0
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = 512.0
-offset_top = 512.0
-offset_right = 512.0
-offset_bottom = 512.0
-metadata/_edit_use_anchors_ = true
+[node name="Chaos" parent="monitors/monitor3/SubViewport/Screen3" index="1"]
+initial_point_count = 6
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor3"]
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
+mesh = SubResource("QuadMesh_v3fvj")
+surface_material_override/0 = SubResource("StandardMaterial3D_g6k5w")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.70710677, -0.02467767, 0.706676, 0, 0.99939084, 0.034899496, -0.70710677, -0.02467767, 0.706676, 2.231, 2.06, 6.585)
+fov = 47.5
+
+[node name="desk" parent="." instance=ExtResource("2_o8g73")]
+transform = Transform3D(0.99999964, 0.0008221219, -0.00026364558, -0.00082203647, 0.99999964, 0.00033218513, 0.00026391182, -0.00033197366, 0.9999999, 0, 0, 0)
+
+[node name="keyboard" parent="." instance=ExtResource("3_v3fvj")]
+
+[node name="room" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 3.2356682, 1.6539006, 7.51472)
+mesh = SubResource("BoxMesh_o8g73")
+
+[node name="SpotLight3D" type="SpotLight3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 2.136034, 8.214726, 6.174881)
+light_energy = 2.395
+spot_range = 56.03
+spot_attenuation = 0.3
+spot_angle = 39.1
+
+[node name="Cams" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_s7xl2")
+}
+
+[connection signal="mouse_entered" from="Control/left" to="." method="_on_left_mouse_entered"]
+[connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]
+[connection signal="mouse_entered" from="Control/up" to="." method="_on_up_mouse_entered"]
+[connection signal="mouse_entered" from="Control/down" to="." method="_on_down_mouse_entered"]
+
+[editable path="monitors/monitor2/SubViewport/Screen2"]
+[editable path="monitors/monitor3/SubViewport/Screen3"]

@@ -1,0 +1,21 @@
+[gd_scene load_steps=2 format=3 uid="uid://e4wvge0sv6x"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3iy4w"]
+font_size = 81
+
+[node name="Home" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 0
+offset_left = 225.0
+offset_top = 341.0
+offset_right = 919.0
+offset_bottom = 452.0
+text = "5 NIGHTs REMAIN"
+label_settings = SubResource("LabelSettings_3iy4w")
