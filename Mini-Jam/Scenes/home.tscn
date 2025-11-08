@@ -1,8 +1,9 @@
-[gd_scene load_steps=13 format=3 uid="uid://e4wvge0sv6x"]
+[gd_scene load_steps=16 format=3 uid="uid://e4wvge0sv6x"]
 
 [ext_resource type="FontFile" uid="uid://cgob6mjsiv2s6" path="res://recources/CONSOLAB.TTF" id="1_dt112"]
 [ext_resource type="Texture2D" uid="uid://c3fgmtbw05tcu" path="res://sprites/CRT.jpg" id="1_ibywg"]
 [ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="2_ibywg"]
+[ext_resource type="Texture2D" uid="uid://bmioissfniveq" path="res://sprites/modelicon.png" id="4_12ycv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_3iy4w"]
 font = ExtResource("1_dt112")
@@ -32,6 +33,14 @@ bg_color = Color(0.78, 0.78, 0.78, 0.63529414)
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhpuh"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkfas"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_llnbm"]
+font = ExtResource("1_dt112")
+font_size = 143
+
+[sub_resource type="LabelSettings" id="LabelSettings_12ycv"]
+font = ExtResource("2_ibywg")
+font_size = 70
 
 [node name="Home" type="Control"]
 layout_mode = 3
@@ -119,3 +128,26 @@ offset_right = 436.0
 offset_bottom = 52.0
 text = "100 DP"
 label_settings = SubResource("LabelSettings_uq2cn")
+
+[node name="model1" type="Sprite2D" parent="."]
+position = Vector2(173.00002, 903)
+scale = Vector2(0.496997, 0.496997)
+texture = ExtResource("4_12ycv")
+
+[node name="percent" type="Label" parent="model1"]
+offset_left = -120.7251
+offset_top = -88.53171
+offset_right = 115.2749
+offset_bottom = 55.468292
+text = "99%"
+label_settings = SubResource("LabelSettings_llnbm")
+metadata/_edit_use_anchors_ = true
+
+[node name="dps" type="Label" parent="model1"]
+offset_left = -219.31725
+offset_top = -247.48645
+offset_right = 229.37758
+offset_bottom = -153.48645
+text = "1 SM"
+label_settings = SubResource("LabelSettings_12ycv")
+horizontal_alignment = 1

@@ -1,4 +1,4 @@
-[gd_scene load_steps=34 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=47 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="PackedScene" uid="uid://bcxs3ded30be7" path="res://Scenes/corner.tscn" id="1_jp0d8"]
 [ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
@@ -7,12 +7,22 @@
 [ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://e4wvge0sv6x" path="res://Scenes/home.tscn" id="4_khr67"]
 [ext_resource type="PackedScene" uid="uid://dhii1xkgpvpm7" path="res://models/monitor/monitor.glb" id="4_qswnl"]
+[ext_resource type="Texture2D" uid="uid://ccqwknmrfjnfl" path="res://sprites/stickynote1.png" id="5_v5su0"]
 [ext_resource type="Texture2D" uid="uid://cd1n8k0oaqyfu" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Color.jpg" id="8_s7xl2"]
 [ext_resource type="Texture2D" uid="uid://bur13deoenu2r" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_AmbientOcclusion.jpg" id="9_m02t5"]
 [ext_resource type="Texture2D" uid="uid://b2nn5xfus6ei7" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Displacement.jpg" id="10_v5su0"]
 [ext_resource type="Texture2D" uid="uid://dtcpdpllxbrge" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Metalness.jpg" id="11_g8qr1"]
 [ext_resource type="Texture2D" uid="uid://ccgtkiwdfmsyw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_NormalGL.jpg" id="12_i4o5d"]
 [ext_resource type="Texture2D" uid="uid://bmegcio10fetw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Roughness.jpg" id="13_xv20y"]
+[ext_resource type="Script" uid="uid://fo4c6pp1mrpw" path="res://scripts/sfx.gd" id="15_sbjbj"]
+[ext_resource type="AudioStream" uid="uid://b8udi0v3c2pf8" path="res://sfx/bone-break-2-218511.mp3" id="15_wqtk0"]
+[ext_resource type="AudioStream" uid="uid://cvk6dgdxtdglr" path="res://sfx/bone-break-3-218510.mp3" id="16_sbjbj"]
+[ext_resource type="AudioStream" uid="uid://c2af6fwverlfw" path="res://sfx/bone-break-5-218513.mp3" id="17_wbabl"]
+[ext_resource type="AudioStream" uid="uid://wonywoid0ocj" path="res://sfx/bone-break-8-218516.mp3" id="18_febji"]
+[ext_resource type="AudioStream" uid="uid://coyhxv3n8rtnq" path="res://sfx/office-ambience-6322.mp3" id="20_wbabl"]
+[ext_resource type="AudioStream" uid="uid://bpslcaehn8pvt" path="res://sfx/keyboard-press-351952.mp3" id="21_cyl7o"]
+[ext_resource type="AudioStream" uid="uid://blc406648ossf" path="res://sfx/spacebar-click-keyboard-199448.mp3" id="22_dsovk"]
+[ext_resource type="AudioStream" uid="uid://mqey82go5ssh" path="res://sfx/mech-keyboard-02-102918.mp3" id="23_acuia"]
 
 [sub_resource type="ProceduralSkyMaterial" id="ProceduralSkyMaterial_g6k5w"]
 sky_top_color = Color(1, 1, 1, 1)
@@ -40,6 +50,12 @@ viewport_path = NodePath("monitors/monitor0/SubViewport")
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qswnl"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_v3fvj")
+
+[sub_resource type="QuadMesh" id="QuadMesh_g8qr1"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4o5d"]
+transparency = 1
+albedo_texture = ExtResource("5_v5su0")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qswnl"]
 viewport_path = NodePath("monitors/monitor1/SubViewport")
@@ -153,6 +169,12 @@ _data = {
 &"up": SubResource("Animation_g6k5w")
 }
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_h5s1o"]
+streams_count = 3
+stream_0/stream = ExtResource("21_cyl7o")
+stream_1/stream = ExtResource("22_dsovk")
+stream_2/stream = ExtResource("23_acuia")
+
 [node name="Game" type="Node3D"]
 script = ExtResource("1_v3fvj")
 
@@ -244,6 +266,12 @@ transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18
 mesh = SubResource("QuadMesh_v3fvj")
 skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_qswnl")
+
+[node name="sticky not" type="MeshInstance3D" parent="monitors/monitor0"]
+transform = Transform3D(0.46188763, -0.040197726, 0.501891, -0.00910377, 0.41879767, 0.10877451, -0.45115477, -0.04960487, 0.5116361, 0.19182315, 1.3935093, 5.470465)
+mesh = SubResource("QuadMesh_g8qr1")
+skeleton = NodePath("../../../desk")
+surface_material_override/0 = SubResource("StandardMaterial3D_i4o5d")
 
 [node name="monitor1" parent="monitors" instance=ExtResource("4_qswnl")]
 transform = Transform3D(0.9947315, 0.10251476, 0, -0.101876274, 0.9885361, -0.11143424, -0.011423655, 0.11084715, 0.9937718, -0.25744107, 2.297, -0.26846284)
@@ -356,6 +384,37 @@ spot_angle = 85.55
 libraries = {
 &"": SubResource("AnimationLibrary_s7xl2")
 }
+
+[node name="sfx" type="Node" parent="."]
+script = ExtResource("15_sbjbj")
+
+[node name="crack1" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("15_wqtk0")
+bus = &"SFX"
+
+[node name="crack2" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("16_sbjbj")
+bus = &"SFX"
+
+[node name="crack3" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("17_wbabl")
+bus = &"SFX"
+
+[node name="crack4" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("18_febji")
+bus = &"SFX"
+
+[node name="ambience" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("20_wbabl")
+autoplay = true
+bus = &"Ambience"
+
+[node name="clicks" type="AudioStreamPlayer2D" parent="sfx"]
+stream = SubResource("AudioStreamRandomizer_h5s1o")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D7" type="AudioStreamPlayer2D" parent="sfx"]
+bus = &"SFX"
 
 [connection signal="mouse_entered" from="Control/left" to="." method="_on_left_mouse_entered"]
 [connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]

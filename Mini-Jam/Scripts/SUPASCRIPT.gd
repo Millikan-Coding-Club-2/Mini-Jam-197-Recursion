@@ -11,6 +11,7 @@ var current_cam = 0
 
 # fnaf cams if statement monstrosity
 func _on_left_mouse_entered():
+	$sfx/crack1.play()
 	if current_cam == 0:
 		hide_arrows()
 		cams_anim.play("left")
@@ -26,6 +27,7 @@ func _on_left_mouse_entered():
 		left.show()
 		up.show()
 func _on_right_mouse_entered():
+	$sfx/crack2.play()
 	if current_cam == 0:
 		current_cam = 2
 		hide_arrows()
@@ -41,12 +43,14 @@ func _on_right_mouse_entered():
 		left.show()
 		up.show()
 func _on_up_mouse_entered():
+	$sfx/crack3.play()
 	current_cam = 1
 	hide_arrows()
 	cams_anim.play("up")
 	await cams_anim.animation_finished
 	down.show()
 func _on_down_mouse_entered():
+	$sfx/crack4.play()
 	current_cam = 0
 	hide_arrows()
 	cams_anim.play_backwards("up")
