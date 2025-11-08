@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://ds6r3tugpuybp" path="res://sprites/arrow.png" id="2_qswnl"]
 [ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://e4wvge0sv6x" path="res://Scenes/home.tscn" id="4_khr67"]
-[ext_resource type="PackedScene" uid="uid://dhii1xkgpvpm7" path="res://models/monitor/monitor.glb" id="4_qswnl"]
+[ext_resource type="PackedScene" uid="uid://bd1tqte3oe08x" path="res://models/monitor/monitor.glb" id="4_qswnl"]
 [ext_resource type="Texture2D" uid="uid://cd1n8k0oaqyfu" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Color.jpg" id="8_s7xl2"]
 [ext_resource type="Texture2D" uid="uid://bur13deoenu2r" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_AmbientOcclusion.jpg" id="9_m02t5"]
 [ext_resource type="Texture2D" uid="uid://b2nn5xfus6ei7" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Displacement.jpg" id="10_v5su0"]
@@ -31,7 +31,6 @@ tonemap_mode = 2
 glow_enabled = true
 
 [sub_resource type="QuadMesh" id="QuadMesh_v3fvj"]
-lightmap_size_hint = Vector2i(9, 7)
 size = Vector2(1.455, 1.175)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_v3fvj"]
@@ -240,9 +239,8 @@ render_target_update_mode = 4
 [node name="Home" parent="monitors/monitor0/SubViewport" instance=ExtResource("4_khr67")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor0"]
-transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.523, 2.162, 4.887)
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
 mesh = SubResource("QuadMesh_v3fvj")
-skeleton = NodePath("")
 surface_material_override/0 = SubResource("StandardMaterial3D_qswnl")
 
 [node name="monitor1" parent="monitors" instance=ExtResource("4_qswnl")]
@@ -266,7 +264,7 @@ scale = Vector2(2.249976, 2.249976)
 metadata/_edit_use_anchors_ = true
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor1"]
-transform = Transform3D(0.7046342, -0.104881234, 0.7017767, 0, 0.989016, 0.1478094, -0.7095707, -0.10415157, 0.6968944, 0.505, 2.187, 4.868)
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
 mesh = SubResource("QuadMesh_v3fvj")
 surface_material_override/0 = SubResource("StandardMaterial3D_khr67")
 
@@ -275,6 +273,7 @@ transform = Transform3D(0.77933794, 0, -0.6266038, 0, 1, 0, 0.6266038, 0, 0.7793
 
 [node name="SubViewport" type="SubViewport" parent="monitors/monitor2"]
 disable_3d = true
+handle_input_locally = false
 size = Vector2i(1024, 1024)
 render_target_update_mode = 4
 
@@ -294,7 +293,7 @@ metadata/_edit_use_anchors_ = true
 initial_point_count = 4
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor2"]
-transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.517, 2.165, 4.881)
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
 mesh = SubResource("QuadMesh_v3fvj")
 surface_material_override/0 = SubResource("StandardMaterial3D_s7xl2")
 
@@ -303,6 +302,7 @@ transform = Transform3D(0.77955663, 0, 0.62633175, 0, 1, 0, -0.62633175, 0, 0.77
 
 [node name="SubViewport" type="SubViewport" parent="monitors/monitor3"]
 disable_3d = true
+handle_input_locally = false
 size = Vector2i(1024, 1024)
 render_target_update_mode = 4
 
@@ -322,7 +322,7 @@ metadata/_edit_use_anchors_ = true
 initial_point_count = 6
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor3"]
-transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.501, 2.166, 4.857)
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.536, 2.187, 4.891)
 mesh = SubResource("QuadMesh_v3fvj")
 surface_material_override/0 = SubResource("StandardMaterial3D_g6k5w")
 

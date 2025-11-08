@@ -60,12 +60,13 @@ pivot_offset = Vector2(256, 256)
 color = Color(0, 0, 0, 1)
 
 [node name="Chaos" parent="." instance=ExtResource("1_0ynou")]
-position = Vector2(256, 206)
+position = Vector2(256, 256)
 initial_point_radius = 7.0
 shape_scale = 100.0
 new_point_radius = 3.0
 
 [node name="Button" type="Button" parent="."]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.3

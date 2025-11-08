@@ -2,23 +2,21 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://c8m2m253rfmf5"
-path="res://.godot/imported/monitor_Material_4.png-889b94217e6b8265df9d7570d48cc300.ctex"
+uid="uid://b2nn5xfus6ei7"
+path.s3tc="res://.godot/imported/OfficeCeiling001_1K-JPG_Displacement.jpg-b43cf6cef31814e3a42208e2505bd1e8.s3tc.ctex"
 metadata={
-"vram_texture": false
-}
-generator_parameters={
-"md5": "370e74058b3ef1bf63ddbb56f0218440"
+"imported_formats": ["s3tc_bptc"],
+"vram_texture": true
 }
 
 [deps]
 
-source_file="res://models/monitor/monitor_Material_4.png"
-dest_files=["res://.godot/imported/monitor_Material_4.png-889b94217e6b8265df9d7570d48cc300.ctex"]
+source_file="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Displacement.jpg"
+dest_files=["res://.godot/imported/OfficeCeiling001_1K-JPG_Displacement.jpg-b43cf6cef31814e3a42208e2505bd1e8.s3tc.ctex"]
 
 [params]
 
-compress/mode=0
+compress/mode=2
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -40,4 +38,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=1
+detect_3d/compress_to=0

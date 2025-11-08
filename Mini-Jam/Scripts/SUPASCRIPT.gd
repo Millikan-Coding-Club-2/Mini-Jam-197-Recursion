@@ -9,7 +9,6 @@ extends Node3D
 var current_cam = 0
 
 
-
 # fnaf cams if statement monstrosity
 func _on_left_mouse_entered():
 	if current_cam == 0:
