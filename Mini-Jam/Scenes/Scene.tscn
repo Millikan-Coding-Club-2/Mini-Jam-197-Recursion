@@ -1,0 +1,51 @@
+[gd_scene load_steps=2 format=3 uid="uid://bbi0do3lkmc2k"]
+
+[ext_resource type="PackedScene" uid="uid://bcxs3ded30be7" path="res://Scenes/corner.tscn" id="1_jp0d8"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Corner" parent="." instance=ExtResource("1_jp0d8")]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.5
+metadata/_edit_use_anchors_ = true
+
+[node name="Corner2" parent="." instance=ExtResource("1_jp0d8")]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 512.0
+offset_right = 512.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Corner3" parent="." instance=ExtResource("1_jp0d8")]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_top = 512.0
+offset_bottom = 512.0
+metadata/_edit_use_anchors_ = true
+
+[node name="Corner4" parent="." instance=ExtResource("1_jp0d8")]
+layout_mode = 1
+anchor_left = 0.0
+anchor_top = 0.0
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 512.0
+offset_top = 512.0
+offset_right = 512.0
+offset_bottom = 512.0
+metadata/_edit_use_anchors_ = true

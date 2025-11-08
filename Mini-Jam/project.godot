@@ -11,11 +11,18 @@ config_version=5
 [application]
 
 config/name="Mini Jam 197"
-run/main_scene="uid://chxcbblejwgh6"
+run/main_scene="uid://bbi0do3lkmc2k"
 config/features=PackedStringArray("4.5", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/viewport_width=1024
+window/size/viewport_height=1024
+window/stretch/mode="canvas_items"
 
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
 renderer/rendering_method.mobile="gl_compatibility"
+environment/defaults/default_clear_color=Color(0, 0, 0, 1)

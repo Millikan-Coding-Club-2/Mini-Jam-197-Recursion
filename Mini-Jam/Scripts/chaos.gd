@@ -23,16 +23,18 @@ var new_point_colors: PackedColorArray
 var time := 0.0
 
 ## Generates the vertices of a regular n-gon
-func generate_polygon(num_points := 3, radius := 1.0, center := Vector2.ZERO):
+func generate_polygon(num_points := 3, radius := 1.0):
 	num_points = maxi(3, num_points)
 	var angle = 2*PI / num_points
 	var points: PackedVector2Array
 	for i in range(num_points):
 		var curr_angle = angle * i - PI/2
-		points.append(center + Vector2(cos(curr_angle) * radius,sin(curr_angle) * radius))
+		points.append(Vector2(cos(curr_angle) * radius,sin(curr_angle) * radius))
 	return points
 	
 func draw_initial_points():
+	draw_circle(Vector2.ZERO, shape_scale * 1.5, Color.WHITE)
+	draw_circle(Vector2.ZERO, shape_scale * 1.4, Color.BLACK)
 	for i in range(initial_point_count):
 		var color = RAINBOW.sample(float(i) / initial_point_count) if color_coded else default_color
 		draw_circle(initial_points[i], initial_point_radius, color)
@@ -48,10 +50,10 @@ func get_next_point(points: PackedVector2Array, current: Vector2):
 	new_point_colors.append(RAINBOW.sample(float(chosen_index) / amount))
 	return next_point
 	
-func random_point_in_circle(radius: float, center := Vector2.ZERO) -> Vector2:
+func random_point_in_circle(radius: float) -> Vector2:
 	var angle = randf_range(0, 2*PI)
 	var normalized = Vector2(cos(angle), sin(angle))
-	return center + normalized * radius * randf_range(0.0, 1.0)
+	return normalized * radius * randf_range(0.0, 1.0)
 
 func _ready() -> void:
 	initial_points = generate_polygon(initial_point_count, shape_scale)

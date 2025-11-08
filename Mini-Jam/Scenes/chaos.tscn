@@ -1,0 +1,8 @@
+[gd_scene load_steps=2 format=3 uid="uid://ce0mfkywvvi7p"]
+
+[ext_resource type="Script" uid="uid://cbas8pnvi3stv" path="res://Scripts/chaos.gd" id="1_3yke4"]
+
+[node name="Chaos" type="Node2D"]
+script = ExtResource("1_3yke4")
+initial_point_radius = 5.0
+new_point_radius = 2.0
