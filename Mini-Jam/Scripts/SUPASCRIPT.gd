@@ -5,9 +5,26 @@ extends Node3D
 @onready var right = $Control/right
 @onready var up = $Control/up
 @onready var down = $Control/down
+# Monitor UI
+@onready var data_point_label: Label = $"monitors/MainMonitor/HomeScreen/SubViewport/Screen/data_points/data"
+@onready var dps: Label = $"monitors/MainMonitor/HomeScreen/SubViewport/Screen/data_points/dps"
+@onready var monitor_label: Label = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label
+@onready var upgrade_label: Label = $"monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac/Button0/upgrade frac"
 
+@export var initial_cost: int = 10
+@export var upgrade_costs: Array[int]
+
+var levels: Array[int] = [1, 1, 1]
 var current_cam = 0
 
+func _ready() -> void:
+	upgrade_label.text = str(initial_cost) + " DP"
+	upgrade_costs.resize(3)
+	upgrade_costs.fill(initial_cost)
+	
+func cost_at_level(level: int) -> int:
+	# TODO: I need my cookie clicker expert to revise this
+	return initial_cost + int(pow(level, 2) / 2.0)
 
 # fnaf cams if statement monstrosity
 func _on_left_mouse_entered():
@@ -64,5 +81,6 @@ func hide_arrows():
 	up.hide()
 	$Control/down.hide()
 
-func _on_home_screen_button_pressed(index: int) -> void:
-	print("Button pressed: " + str(index))
+func _on_button_pressed(index: int) -> void:
+	levels[index] += 1
+	upgrade_label.text = str(cost_at_level(levels[index])) + " DP"

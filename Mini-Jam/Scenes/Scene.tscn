@@ -1,14 +1,18 @@
-[gd_scene load_steps=45 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=64 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="PackedScene" uid="uid://bcxs3ded30be7" path="res://Scenes/corner.tscn" id="1_jp0d8"]
 [ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
 [ext_resource type="Texture2D" uid="uid://ds6r3tugpuybp" path="res://sprites/arrow.png" id="2_qswnl"]
 [ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
-[ext_resource type="PackedScene" uid="uid://e4wvge0sv6x" path="res://Scenes/homemonitor.tscn" id="4_khr67"]
+[ext_resource type="Script" uid="uid://bbbktdg05mnbn" path="res://Scripts/UI_3D.gd" id="4_76fpr"]
 [ext_resource type="PackedScene" uid="uid://dhii1xkgpvpm7" path="res://models/monitor/monitor.glb" id="4_qswnl"]
+[ext_resource type="Texture2D" uid="uid://c3fgmtbw05tcu" path="res://sprites/CRT.jpg" id="5_hryva"]
 [ext_resource type="Texture2D" uid="uid://ccqwknmrfjnfl" path="res://sprites/stickynote1.png" id="5_v5su0"]
+[ext_resource type="FontFile" uid="uid://cgob6mjsiv2s6" path="res://recources/CONSOLAB.TTF" id="6_x0tcf"]
+[ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="7_3j0kp"]
 [ext_resource type="Texture2D" uid="uid://cd1n8k0oaqyfu" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Color.jpg" id="8_s7xl2"]
+[ext_resource type="Texture2D" uid="uid://bmioissfniveq" path="res://sprites/modelicon.png" id="8_vv80f"]
 [ext_resource type="Texture2D" uid="uid://bur13deoenu2r" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_AmbientOcclusion.jpg" id="9_m02t5"]
 [ext_resource type="Texture2D" uid="uid://b2nn5xfus6ei7" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Displacement.jpg" id="10_v5su0"]
 [ext_resource type="Texture2D" uid="uid://dtcpdpllxbrge" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Metalness.jpg" id="11_g8qr1"]
@@ -39,6 +43,55 @@ background_mode = 2
 sky = SubResource("Sky_tn73o")
 tonemap_mode = 2
 glow_enabled = true
+
+[sub_resource type="LabelSettings" id="LabelSettings_3iy4w"]
+font = ExtResource("6_x0tcf")
+font_size = 63
+
+[sub_resource type="LabelSettings" id="LabelSettings_dt112"]
+font = ExtResource("7_3j0kp")
+font_size = 59
+
+[sub_resource type="LabelSettings" id="LabelSettings_ibywg"]
+font = ExtResource("7_3j0kp")
+font_size = 38
+
+[sub_resource type="LabelSettings" id="LabelSettings_uq2cn"]
+font = ExtResource("7_3j0kp")
+font_size = 42
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibywg"]
+bg_color = Color(1, 1, 1, 0.63529414)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12ycv"]
+bg_color = Color(0.4, 0.4, 0.4, 0.63529414)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llnbm"]
+bg_color = Color(0.78, 0.78, 0.78, 0.63529414)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhpuh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkfas"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_llnbm"]
+font = ExtResource("6_x0tcf")
+font_size = 143
+
+[sub_resource type="LabelSettings" id="LabelSettings_12ycv"]
+font = ExtResource("7_3j0kp")
+font_size = 70
+
+[sub_resource type="QuadMesh" id="QuadMesh_12ycv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_76fpr"]
+viewport_path = NodePath("monitors/MainMonitor/HomeScreen/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_hryva"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_76fpr")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgtb3"]
+size = Vector3(1, 1, 0.1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_g8qr1"]
 
@@ -246,12 +299,143 @@ texture = ExtResource("2_qswnl")
 
 [node name="monitors" type="Node3D" parent="."]
 
-[node name="monitor0" parent="monitors" instance=ExtResource("4_qswnl")]
+[node name="MainMonitor" parent="monitors" instance=ExtResource("4_qswnl")]
 
-[node name="HomeScreen" parent="monitors/monitor0" instance=ExtResource("4_khr67")]
+[node name="HomeScreen" type="Node3D" parent="monitors/MainMonitor"]
 transform = Transform3D(1.0216959, -0.15535803, 0.8144152, 0, 1.1640102, 0.22204684, -1.0005186, -0.15864639, 0.8316534, 0.523, 2.162, 4.887)
+script = ExtResource("4_76fpr")
 
-[node name="sticky not" type="MeshInstance3D" parent="monitors/monitor0"]
+[node name="SubViewport" type="SubViewport" parent="monitors/MainMonitor/HomeScreen"]
+size = Vector2i(1024, 1024)
+
+[node name="Screen" type="Control" parent="monitors/MainMonitor/HomeScreen/SubViewport"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CRT" type="TextureRect" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
+layout_mode = 0
+offset_right = 1020.0
+offset_bottom = 1018.0
+texture = ExtResource("5_hryva")
+expand_mode = 2
+
+[node name="data_points" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 32.0
+offset_right = 944.0
+offset_bottom = 143.0
+text = "DATA POINTS"
+label_settings = SubResource("LabelSettings_3iy4w")
+horizontal_alignment = 1
+
+[node name="data" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/data_points"]
+layout_mode = 0
+offset_top = 70.0
+offset_right = 886.0
+offset_bottom = 181.0
+text = "0"
+label_settings = SubResource("LabelSettings_dt112")
+horizontal_alignment = 1
+
+[node name="dps" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/data_points"]
+layout_mode = 0
+offset_top = 141.0
+offset_right = 886.0
+offset_bottom = 252.0
+text = "1 DPS"
+label_settings = SubResource("LabelSettings_ibywg")
+horizontal_alignment = 1
+
+[node name="monitor_label" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
+layout_mode = 0
+offset_left = 58.0
+offset_top = 262.0
+offset_right = 944.0
+offset_bottom = 373.0
+text = "MONITOR 1: 3 VERTICES"
+label_settings = SubResource("LabelSettings_3iy4w")
+
+[node name="upgrade frac" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 79.0
+offset_right = 970.0
+offset_bottom = 190.0
+text = "UPGRADE FRACTAL"
+label_settings = SubResource("LabelSettings_uq2cn")
+
+[node name="Button0" type="Button" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = -8.0
+offset_right = 519.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_ibywg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12ycv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_llnbm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fhpuh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vkfas")
+text = "+"
+
+[node name="upgrade frac" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac/Button0"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 7.0
+offset_right = 436.0
+offset_bottom = 52.0
+text = "100 DP"
+label_settings = SubResource("LabelSettings_uq2cn")
+
+[node name="model" type="TextureRect" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 734.0
+offset_right = 340.0
+offset_bottom = 1076.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(165, 165)
+texture = ExtResource("8_vv80f")
+
+[node name="percent" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 85.0
+offset_right = 283.0
+offset_bottom = 229.0
+text = "99%"
+label_settings = SubResource("LabelSettings_llnbm")
+
+[node name="dps" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -73.0
+offset_right = 397.69482
+offset_bottom = 21.0
+text = "1 SM"
+label_settings = SubResource("LabelSettings_12ycv")
+horizontal_alignment = 1
+
+[node name="Quad" type="MeshInstance3D" parent="monitors/MainMonitor/HomeScreen"]
+mesh = SubResource("QuadMesh_12ycv")
+surface_material_override/0 = SubResource("StandardMaterial3D_hryva")
+
+[node name="Area3D" type="Area3D" parent="monitors/MainMonitor/HomeScreen/Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="monitors/MainMonitor/HomeScreen/Quad/Area3D"]
+shape = SubResource("BoxShape3D_bgtb3")
+
+[node name="sticky not" type="MeshInstance3D" parent="monitors/MainMonitor"]
 transform = Transform3D(0.46188763, -0.040197726, 0.501891, -0.00910377, 0.41879767, 0.10877451, -0.45115477, -0.04960487, 0.5116361, 0.19182315, 1.3935093, 5.470465)
 mesh = SubResource("QuadMesh_g8qr1")
 skeleton = NodePath("../../../desk")
@@ -405,7 +589,7 @@ bus = &"SFX"
 [connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]
 [connection signal="mouse_entered" from="Control/up" to="." method="_on_up_mouse_entered"]
 [connection signal="mouse_entered" from="Control/down" to="." method="_on_down_mouse_entered"]
-[connection signal="button_pressed" from="monitors/monitor0/HomeScreen" to="." method="_on_home_screen_button_pressed"]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac/Button0" to="." method="_on_button_pressed" binds= [0]]
 
 [editable path="monitors/monitor2/SubViewport/Screen2"]
 [editable path="monitors/monitor3/SubViewport/Screen3"]

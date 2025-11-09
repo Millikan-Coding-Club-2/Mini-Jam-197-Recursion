@@ -1,8 +1,6 @@
 # Modified from https://godotengine.org/asset-library/asset/127
 extends Node3D
 
-signal button_pressed(index: int)
-
 var is_mouse_inside := true
 
 @onready var node_viewport: SubViewport = $SubViewport
@@ -66,6 +64,3 @@ func _mouse_input_event(_camera: Camera3D, event: InputEvent, event_position: Ve
 
 	# Finally, send the processed input event to the viewport.
 	node_viewport.push_input(event)
-
-func _on_button_pressed(index: int) -> void:
-	emit_signal("button_pressed", index)
