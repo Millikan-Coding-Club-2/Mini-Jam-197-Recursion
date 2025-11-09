@@ -1,4 +1,4 @@
-1. MAKE MONITORS CLICKABLE
+   1. MAKE MONITORS CLICKABLE
 2. FINISH GAMEPLAY LOOP
 	- ADD MANUAL DATA COLLECTION (HOLD TO ADD POINTS)
 	- MAKE POINTS ON FRACTALS EQUAL TO DATA
@@ -14,3 +14,5 @@
 	- sticky notes for instructions
 3. ADD SFX
 4. ADD LORE
+
+https://tenor.com/view/hollow-knight-silksong-i-agree-mhm-gif-619887815162023225

@@ -1,5 +1,6 @@
-[gd_scene load_steps=16 format=3 uid="uid://e4wvge0sv6x"]
+[gd_scene load_steps=21 format=3 uid="uid://e4wvge0sv6x"]
 
+[ext_resource type="Script" uid="uid://bbbktdg05mnbn" path="res://Scripts/UI_3D.gd" id="1_6yc7o"]
 [ext_resource type="FontFile" uid="uid://cgob6mjsiv2s6" path="res://recources/CONSOLAB.TTF" id="1_dt112"]
 [ext_resource type="Texture2D" uid="uid://c3fgmtbw05tcu" path="res://sprites/CRT.jpg" id="1_ibywg"]
 [ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="2_ibywg"]
@@ -42,7 +43,25 @@ font_size = 143
 font = ExtResource("2_ibywg")
 font_size = 70
 
-[node name="Home" type="Control"]
+[sub_resource type="QuadMesh" id="QuadMesh_12ycv"]
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_llnbm"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fhpuh"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_llnbm")
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_bgtb3"]
+size = Vector3(1, 1, 0.1)
+
+[node name="HomeMonitor" type="Node3D"]
+script = ExtResource("1_6yc7o")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+size = Vector2i(1024, 1024)
+
+[node name="Screen" type="Control" parent="SubViewport"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -50,12 +69,14 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Crt" type="Sprite2D" parent="."]
-position = Vector2(509, 567.49994)
-scale = Vector2(0.40390623, 1.0966796)
+[node name="CRT" type="TextureRect" parent="SubViewport/Screen"]
+layout_mode = 0
+offset_right = 1020.0
+offset_bottom = 1018.0
 texture = ExtResource("1_ibywg")
+expand_mode = 2
 
-[node name="data points" type="Label" parent="."]
+[node name="data points" type="Label" parent="SubViewport/Screen"]
 layout_mode = 0
 offset_left = 58.0
 offset_top = 32.0
@@ -65,7 +86,7 @@ text = "DATA POINTS"
 label_settings = SubResource("LabelSettings_3iy4w")
 horizontal_alignment = 1
 
-[node name="data" type="Label" parent="data points"]
+[node name="data" type="Label" parent="SubViewport/Screen/data points"]
 layout_mode = 0
 offset_top = 70.0
 offset_right = 886.0
@@ -74,7 +95,7 @@ text = "58345243"
 label_settings = SubResource("LabelSettings_dt112")
 horizontal_alignment = 1
 
-[node name="dps" type="Label" parent="data points"]
+[node name="dps" type="Label" parent="SubViewport/Screen/data points"]
 layout_mode = 0
 offset_top = 141.0
 offset_right = 886.0
@@ -83,7 +104,7 @@ text = "1 DPS"
 label_settings = SubResource("LabelSettings_ibywg")
 horizontal_alignment = 1
 
-[node name="monitor_label" type="Label" parent="."]
+[node name="monitor_label" type="Label" parent="SubViewport/Screen"]
 layout_mode = 0
 offset_left = 58.0
 offset_top = 262.0
@@ -92,7 +113,7 @@ offset_bottom = 373.0
 text = "MONITOR 1: TRIANGLE"
 label_settings = SubResource("LabelSettings_3iy4w")
 
-[node name="upgrade frac" type="Label" parent="monitor_label"]
+[node name="upgrade frac" type="Label" parent="SubViewport/Screen/monitor_label"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 79.0
@@ -101,7 +122,7 @@ offset_bottom = 190.0
 text = "UPGRADE FRACTAL"
 label_settings = SubResource("LabelSettings_uq2cn")
 
-[node name="Button" type="Button" parent="monitor_label/upgrade frac"]
+[node name="Button" type="Button" parent="SubViewport/Screen/monitor_label/upgrade frac"]
 layout_mode = 0
 offset_left = 465.0
 offset_top = -8.0
@@ -120,7 +141,7 @@ theme_override_styles/disabled = SubResource("StyleBoxEmpty_fhpuh")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vkfas")
 text = "+"
 
-[node name="upgrade frac" type="Label" parent="monitor_label/upgrade frac/Button"]
+[node name="upgrade frac" type="Label" parent="SubViewport/Screen/monitor_label/upgrade frac/Button"]
 layout_mode = 0
 offset_left = 84.0
 offset_top = 7.0
@@ -129,25 +150,42 @@ offset_bottom = 52.0
 text = "100 DP"
 label_settings = SubResource("LabelSettings_uq2cn")
 
-[node name="model1" type="Sprite2D" parent="."]
-position = Vector2(173.00002, 903)
-scale = Vector2(0.496997, 0.496997)
+[node name="model" type="TextureRect" parent="SubViewport/Screen"]
+layout_mode = 0
+offset_left = 7.0
+offset_top = 734.0
+offset_right = 340.0
+offset_bottom = 1076.0
+scale = Vector2(0.5, 0.5)
+pivot_offset = Vector2(165, 165)
 texture = ExtResource("4_12ycv")
 
-[node name="percent" type="Label" parent="model1"]
-offset_left = -120.7251
-offset_top = -88.53171
-offset_right = 115.2749
-offset_bottom = 55.468292
+[node name="percent" type="Label" parent="SubViewport/Screen/model"]
+layout_mode = 0
+offset_left = 47.0
+offset_top = 85.0
+offset_right = 283.0
+offset_bottom = 229.0
 text = "99%"
 label_settings = SubResource("LabelSettings_llnbm")
-metadata/_edit_use_anchors_ = true
 
-[node name="dps" type="Label" parent="model1"]
-offset_left = -219.31725
-offset_top = -247.48645
-offset_right = 229.37758
-offset_bottom = -153.48645
+[node name="dps" type="Label" parent="SubViewport/Screen/model"]
+layout_mode = 0
+offset_left = -51.0
+offset_top = -73.0
+offset_right = 397.69482
+offset_bottom = 21.0
 text = "1 SM"
 label_settings = SubResource("LabelSettings_12ycv")
 horizontal_alignment = 1
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+mesh = SubResource("QuadMesh_12ycv")
+surface_material_override/0 = SubResource("StandardMaterial3D_fhpuh")
+
+[node name="Area3D" type="Area3D" parent="Quad"]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+shape = SubResource("BoxShape3D_bgtb3")
+
+[connection signal="pressed" from="SubViewport/Screen/monitor_label/upgrade frac/Button" to="." method="_on_button_pressed" binds= [0]]

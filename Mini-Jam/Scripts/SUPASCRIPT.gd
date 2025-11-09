@@ -63,3 +63,6 @@ func hide_arrows():
 	right.hide()
 	up.hide()
 	$Control/down.hide()
+
+func _on_home_screen_button_pressed(index: int) -> void:
+	print("Button pressed: " + str(index))

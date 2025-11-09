@@ -1,11 +1,11 @@
-[gd_scene load_steps=47 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=45 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="PackedScene" uid="uid://bcxs3ded30be7" path="res://Scenes/corner.tscn" id="1_jp0d8"]
 [ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
 [ext_resource type="Texture2D" uid="uid://ds6r3tugpuybp" path="res://sprites/arrow.png" id="2_qswnl"]
 [ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
-[ext_resource type="PackedScene" uid="uid://e4wvge0sv6x" path="res://Scenes/home.tscn" id="4_khr67"]
+[ext_resource type="PackedScene" uid="uid://e4wvge0sv6x" path="res://Scenes/homemonitor.tscn" id="4_khr67"]
 [ext_resource type="PackedScene" uid="uid://dhii1xkgpvpm7" path="res://models/monitor/monitor.glb" id="4_qswnl"]
 [ext_resource type="Texture2D" uid="uid://ccqwknmrfjnfl" path="res://sprites/stickynote1.png" id="5_v5su0"]
 [ext_resource type="Texture2D" uid="uid://cd1n8k0oaqyfu" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Color.jpg" id="8_s7xl2"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://dtcpdpllxbrge" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Metalness.jpg" id="11_g8qr1"]
 [ext_resource type="Texture2D" uid="uid://ccgtkiwdfmsyw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_NormalGL.jpg" id="12_i4o5d"]
 [ext_resource type="Texture2D" uid="uid://bmegcio10fetw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Roughness.jpg" id="13_xv20y"]
-[ext_resource type="Script" uid="uid://fo4c6pp1mrpw" path="res://scripts/sfx.gd" id="15_sbjbj"]
+[ext_resource type="Script" path="res://Scripts/sfx.gd" id="15_sbjbj"]
 [ext_resource type="AudioStream" uid="uid://b8udi0v3c2pf8" path="res://sfx/bone-break-2-218511.mp3" id="15_wqtk0"]
 [ext_resource type="AudioStream" uid="uid://cvk6dgdxtdglr" path="res://sfx/bone-break-3-218510.mp3" id="16_sbjbj"]
 [ext_resource type="AudioStream" uid="uid://c2af6fwverlfw" path="res://sfx/bone-break-5-218513.mp3" id="17_wbabl"]
@@ -40,22 +40,15 @@ sky = SubResource("Sky_tn73o")
 tonemap_mode = 2
 glow_enabled = true
 
-[sub_resource type="QuadMesh" id="QuadMesh_v3fvj"]
-lightmap_size_hint = Vector2i(9, 7)
-size = Vector2(1.455, 1.175)
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_v3fvj"]
-viewport_path = NodePath("monitors/monitor0/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qswnl"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_v3fvj")
-
 [sub_resource type="QuadMesh" id="QuadMesh_g8qr1"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4o5d"]
 transparency = 1
 albedo_texture = ExtResource("5_v5su0")
+
+[sub_resource type="QuadMesh" id="QuadMesh_v3fvj"]
+lightmap_size_hint = Vector2i(9, 7)
+size = Vector2(1.455, 1.175)
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_qswnl"]
 viewport_path = NodePath("monitors/monitor1/SubViewport")
@@ -188,6 +181,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+mouse_filter = 1
 
 [node name="left" type="Control" parent="Control"]
 layout_mode = 1
@@ -254,18 +248,8 @@ texture = ExtResource("2_qswnl")
 
 [node name="monitor0" parent="monitors" instance=ExtResource("4_qswnl")]
 
-[node name="SubViewport" type="SubViewport" parent="monitors/monitor0"]
-disable_3d = true
-size = Vector2i(1024, 1024)
-render_target_update_mode = 4
-
-[node name="Home" parent="monitors/monitor0/SubViewport" instance=ExtResource("4_khr67")]
-
-[node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor0"]
-transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.523, 2.162, 4.887)
-mesh = SubResource("QuadMesh_v3fvj")
-skeleton = NodePath("")
-surface_material_override/0 = SubResource("StandardMaterial3D_qswnl")
+[node name="HomeScreen" parent="monitors/monitor0" instance=ExtResource("4_khr67")]
+transform = Transform3D(1.0216959, -0.15535803, 0.8144152, 0, 1.1640102, 0.22204684, -1.0005186, -0.15864639, 0.8316534, 0.523, 2.162, 4.887)
 
 [node name="sticky not" type="MeshInstance3D" parent="monitors/monitor0"]
 transform = Transform3D(0.46188763, -0.040197726, 0.501891, -0.00910377, 0.41879767, 0.10877451, -0.45115477, -0.04960487, 0.5116361, 0.19182315, 1.3935093, 5.470465)
@@ -356,7 +340,7 @@ surface_material_override/0 = SubResource("StandardMaterial3D_g6k5w")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.7071067, -0.02467767, 0.706676, 0, 0.99939084, 0.034899496, -0.7071067, -0.02467767, 0.706676, 2.231, 2.06, 6.585)
-fov = 47.5
+fov = 50.0
 
 [node name="desk" parent="." instance=ExtResource("2_o8g73")]
 transform = Transform3D(0.99999964, 0.0008221219, -0.00026364558, -0.00082203647, 0.99999964, 0.00033218513, 0.00026391182, -0.00033197366, 0.9999999, 0, 0, 0)
@@ -387,6 +371,7 @@ libraries = {
 
 [node name="sfx" type="Node" parent="."]
 script = ExtResource("15_sbjbj")
+cracking = false
 
 [node name="crack1" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("15_wqtk0")
@@ -420,6 +405,7 @@ bus = &"SFX"
 [connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]
 [connection signal="mouse_entered" from="Control/up" to="." method="_on_up_mouse_entered"]
 [connection signal="mouse_entered" from="Control/down" to="." method="_on_down_mouse_entered"]
+[connection signal="button_pressed" from="monitors/monitor0/HomeScreen" to="." method="_on_home_screen_button_pressed"]
 
 [editable path="monitors/monitor2/SubViewport/Screen2"]
 [editable path="monitors/monitor3/SubViewport/Screen3"]
