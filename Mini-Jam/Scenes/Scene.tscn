@@ -1,24 +1,25 @@
-[gd_scene load_steps=64 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=59 format=3 uid="uid://bbi0do3lkmc2k"]
 
-[ext_resource type="PackedScene" uid="uid://bcxs3ded30be7" path="res://Scenes/corner.tscn" id="1_jp0d8"]
-[ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
+[ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scenes/Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
 [ext_resource type="Texture2D" uid="uid://ds6r3tugpuybp" path="res://sprites/arrow.png" id="2_qswnl"]
 [ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
-[ext_resource type="Script" uid="uid://bbbktdg05mnbn" path="res://Scripts/UI_3D.gd" id="4_76fpr"]
+[ext_resource type="Script" uid="uid://bbbktdg05mnbn" path="res://Scenes/Scripts/UI_3D.gd" id="4_76fpr"]
 [ext_resource type="PackedScene" uid="uid://dhii1xkgpvpm7" path="res://models/monitor/monitor.glb" id="4_qswnl"]
 [ext_resource type="Texture2D" uid="uid://c3fgmtbw05tcu" path="res://sprites/CRT.jpg" id="5_hryva"]
 [ext_resource type="Texture2D" uid="uid://ccqwknmrfjnfl" path="res://sprites/stickynote1.png" id="5_v5su0"]
 [ext_resource type="FontFile" uid="uid://cgob6mjsiv2s6" path="res://recources/CONSOLAB.TTF" id="6_x0tcf"]
 [ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="7_3j0kp"]
+[ext_resource type="PackedScene" uid="uid://eyjmsd0mvqtg" path="res://Scenes/monitorlabel.tscn" id="8_hryva"]
 [ext_resource type="Texture2D" uid="uid://cd1n8k0oaqyfu" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Color.jpg" id="8_s7xl2"]
 [ext_resource type="Texture2D" uid="uid://bmioissfniveq" path="res://sprites/modelicon.png" id="8_vv80f"]
 [ext_resource type="Texture2D" uid="uid://bur13deoenu2r" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_AmbientOcclusion.jpg" id="9_m02t5"]
+[ext_resource type="PackedScene" uid="uid://ce0mfkywvvi7p" path="res://Scenes/chaos.tscn" id="10_76fpr"]
 [ext_resource type="Texture2D" uid="uid://b2nn5xfus6ei7" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Displacement.jpg" id="10_v5su0"]
 [ext_resource type="Texture2D" uid="uid://dtcpdpllxbrge" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Metalness.jpg" id="11_g8qr1"]
 [ext_resource type="Texture2D" uid="uid://ccgtkiwdfmsyw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_NormalGL.jpg" id="12_i4o5d"]
 [ext_resource type="Texture2D" uid="uid://bmegcio10fetw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Roughness.jpg" id="13_xv20y"]
-[ext_resource type="Script" path="res://Scripts/sfx.gd" id="15_sbjbj"]
+[ext_resource type="Script" uid="uid://fo4c6pp1mrpw" path="res://Scenes/Scripts/sfx.gd" id="15_sbjbj"]
 [ext_resource type="AudioStream" uid="uid://b8udi0v3c2pf8" path="res://sfx/bone-break-2-218511.mp3" id="15_wqtk0"]
 [ext_resource type="AudioStream" uid="uid://cvk6dgdxtdglr" path="res://sfx/bone-break-3-218510.mp3" id="16_sbjbj"]
 [ext_resource type="AudioStream" uid="uid://c2af6fwverlfw" path="res://sfx/bone-break-5-218513.mp3" id="17_wbabl"]
@@ -56,23 +57,6 @@ font_size = 59
 font = ExtResource("7_3j0kp")
 font_size = 38
 
-[sub_resource type="LabelSettings" id="LabelSettings_uq2cn"]
-font = ExtResource("7_3j0kp")
-font_size = 42
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibywg"]
-bg_color = Color(1, 1, 1, 0.63529414)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12ycv"]
-bg_color = Color(0.4, 0.4, 0.4, 0.63529414)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llnbm"]
-bg_color = Color(0.78, 0.78, 0.78, 0.63529414)
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhpuh"]
-
-[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkfas"]
-
 [sub_resource type="LabelSettings" id="LabelSettings_llnbm"]
 font = ExtResource("6_x0tcf")
 font_size = 143
@@ -103,26 +87,26 @@ albedo_texture = ExtResource("5_v5su0")
 lightmap_size_hint = Vector2i(9, 7)
 size = Vector2(1.455, 1.175)
 
-[sub_resource type="ViewportTexture" id="ViewportTexture_qswnl"]
+[sub_resource type="ViewportTexture" id="ViewportTexture_s7xl2"]
 viewport_path = NodePath("monitors/monitor1/SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k5w"]
+resource_local_to_scene = true
+albedo_texture = SubResource("ViewportTexture_s7xl2")
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_qswnl"]
+viewport_path = NodePath("monitors/monitor2/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_khr67"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_qswnl")
 
 [sub_resource type="ViewportTexture" id="ViewportTexture_khr67"]
-viewport_path = NodePath("monitors/monitor2/SubViewport")
+viewport_path = NodePath("monitors/monitor3/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7xl2"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_khr67")
-
-[sub_resource type="ViewportTexture" id="ViewportTexture_s7xl2"]
-viewport_path = NodePath("monitors/monitor3/SubViewport")
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_g6k5w"]
-resource_local_to_scene = true
-albedo_texture = SubResource("ViewportTexture_s7xl2")
 
 [sub_resource type="BoxMesh" id="BoxMesh_o8g73"]
 lightmap_size_hint = Vector2i(104, 156)
@@ -221,8 +205,13 @@ stream_0/stream = ExtResource("21_cyl7o")
 stream_1/stream = ExtResource("22_dsovk")
 stream_2/stream = ExtResource("23_acuia")
 
-[node name="Game" type="Node3D"]
+[node name="Game" type="Node3D" node_paths=PackedStringArray("monitor_labels", "upgrade_labels1", "upgrade_labels2", "upgrade_labels3", "chaoses")]
 script = ExtResource("1_v3fvj")
+monitor_labels = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/monitor_label"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/monitor_label"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/monitor_label")]
+upgrade_labels1 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/add_vert/Button/level")]
+upgrade_labels2 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/level")]
+upgrade_labels3 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/level")]
+chaoses = [NodePath("monitors/monitor1/SubViewport/Chaos"), NodePath("monitors/monitor2/SubViewport/Chaos"), NodePath("monitors/monitor3/SubViewport/Chaos")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_347al")
@@ -347,62 +336,46 @@ layout_mode = 0
 offset_top = 141.0
 offset_right = 886.0
 offset_bottom = 252.0
-text = "1 DPS"
+text = "1 DP/s"
 label_settings = SubResource("LabelSettings_ibywg")
 horizontal_alignment = 1
 
-[node name="monitor_label" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
-layout_mode = 0
-offset_left = 58.0
-offset_top = 262.0
-offset_right = 944.0
-offset_bottom = 373.0
-text = "MONITOR 1: 3 VERTICES"
-label_settings = SubResource("LabelSettings_3iy4w")
+[node name="MonitorList" type="VBoxContainer" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -422.0
+offset_top = 250.0
+offset_right = 305.0
+offset_bottom = 1008.0
+grow_horizontal = 2
 
-[node name="upgrade frac" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label"]
-layout_mode = 0
-offset_left = 84.0
-offset_top = 79.0
-offset_right = 970.0
-offset_bottom = 190.0
-text = "UPGRADE FRACTAL"
-label_settings = SubResource("LabelSettings_uq2cn")
+[node name="Monitor1" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList" instance=ExtResource("8_hryva")]
+layout_mode = 2
 
-[node name="Button0" type="Button" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac"]
-layout_mode = 0
-offset_left = 465.0
-offset_top = -8.0
-offset_right = 519.0
-offset_bottom = 46.0
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
-theme_override_font_sizes/font_size = 33
-theme_override_styles/normal = SubResource("StyleBoxFlat_ibywg")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_12ycv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_llnbm")
-theme_override_styles/disabled = SubResource("StyleBoxEmpty_fhpuh")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vkfas")
-text = "+"
+[node name="Monitor2" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList" instance=ExtResource("8_hryva")]
+layout_mode = 2
 
-[node name="upgrade frac" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac/Button0"]
-layout_mode = 0
-offset_left = 84.0
-offset_top = 7.0
-offset_right = 436.0
-offset_bottom = 52.0
-text = "100 DP"
-label_settings = SubResource("LabelSettings_uq2cn")
+[node name="monitor_label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2" index="0"]
+text = "MONITOR 2: 3 VERTICES"
+
+[node name="Monitor3" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList" instance=ExtResource("8_hryva")]
+layout_mode = 2
+
+[node name="monitor_label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3" index="0"]
+text = "MONITOR 3: 3 VERTICES"
 
 [node name="model" type="TextureRect" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
-layout_mode = 0
-offset_left = 7.0
-offset_top = 734.0
-offset_right = 340.0
-offset_bottom = 1076.0
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -304.0
+offset_top = -20.0
+offset_right = 29.000488
+offset_bottom = 322.0
+grow_horizontal = 0
 scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(165, 165)
 texture = ExtResource("8_vv80f")
@@ -442,85 +415,67 @@ skeleton = NodePath("../../../desk")
 surface_material_override/0 = SubResource("StandardMaterial3D_i4o5d")
 
 [node name="monitor1" parent="monitors" instance=ExtResource("4_qswnl")]
-transform = Transform3D(0.9947315, 0.10251476, 0, -0.101876274, 0.9885361, -0.11143424, -0.011423655, 0.11084715, 0.9937718, -0.25744107, 2.297, -0.26846284)
+transform = Transform3D(0.77955663, 0, 0.62633175, 0, 1, 0, -0.62633175, 0, 0.77955663, -3.822319, 0.012252092, 3.0600939)
 
 [node name="SubViewport" type="SubViewport" parent="monitors/monitor1"]
 disable_3d = true
 size = Vector2i(1024, 1024)
 render_target_update_mode = 4
 
-[node name="Screen1" parent="monitors/monitor1/SubViewport" instance=ExtResource("1_jp0d8")]
-anchor_left = 0.0
-anchor_top = 0.016448319
-anchor_right = 0.5
-anchor_bottom = 0.51845515
-offset_left = 260.0
-offset_top = 243.15692
-offset_right = 260.0
-offset_bottom = 243.15692
-scale = Vector2(2.249976, 2.249976)
-metadata/_edit_use_anchors_ = true
+[node name="CRT" type="TextureRect" parent="monitors/monitor1/SubViewport"]
+offset_right = 1020.0
+offset_bottom = 1018.0
+texture = ExtResource("5_hryva")
+expand_mode = 2
+
+[node name="Chaos" parent="monitors/monitor1/SubViewport" instance=ExtResource("10_76fpr")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor1"]
-transform = Transform3D(0.7046342, -0.104881234, 0.7017767, 0, 0.989016, 0.1478094, -0.7095707, -0.10415157, 0.6968944, 0.505, 2.187, 4.868)
+transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.501, 2.166, 4.857)
 mesh = SubResource("QuadMesh_v3fvj")
-surface_material_override/0 = SubResource("StandardMaterial3D_khr67")
+surface_material_override/0 = SubResource("StandardMaterial3D_g6k5w")
 
 [node name="monitor2" parent="monitors" instance=ExtResource("4_qswnl")]
-transform = Transform3D(0.77933794, 0, -0.6266038, 0, 1, 0, 0.6266038, 0, 0.77933794, 4.937353, 0.012252092, -0.058248043)
+transform = Transform3D(0.9947315, 0.10251476, 0, -0.101876274, 0.9885361, -0.11143424, -0.011423655, 0.11084715, 0.9937718, -0.25744107, 2.297, -0.26846284)
 
 [node name="SubViewport" type="SubViewport" parent="monitors/monitor2"]
 disable_3d = true
 size = Vector2i(1024, 1024)
 render_target_update_mode = 4
 
-[node name="Screen2" parent="monitors/monitor2/SubViewport" instance=ExtResource("1_jp0d8")]
-anchor_left = 0.0
-anchor_top = 0.016448319
-anchor_right = 0.5
-anchor_bottom = 0.51845515
-offset_left = 260.0
-offset_top = 243.15692
-offset_right = 260.0
-offset_bottom = 243.15692
-scale = Vector2(2.249976, 2.249976)
-metadata/_edit_use_anchors_ = true
+[node name="CRT" type="TextureRect" parent="monitors/monitor2/SubViewport"]
+offset_right = 1020.0
+offset_bottom = 1018.0
+texture = ExtResource("5_hryva")
+expand_mode = 2
 
-[node name="Chaos" parent="monitors/monitor2/SubViewport/Screen2" index="1"]
-initial_point_count = 4
+[node name="Chaos" parent="monitors/monitor2/SubViewport" instance=ExtResource("10_76fpr")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor2"]
-transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.517, 2.165, 4.881)
+transform = Transform3D(0.7046342, -0.104881234, 0.7017767, 0, 0.989016, 0.1478094, -0.7095707, -0.10415157, 0.6968944, 0.505, 2.187, 4.868)
 mesh = SubResource("QuadMesh_v3fvj")
-surface_material_override/0 = SubResource("StandardMaterial3D_s7xl2")
+surface_material_override/0 = SubResource("StandardMaterial3D_khr67")
 
 [node name="monitor3" parent="monitors" instance=ExtResource("4_qswnl")]
-transform = Transform3D(0.77955663, 0, 0.62633175, 0, 1, 0, -0.62633175, 0, 0.77955663, -3.822319, 0.012252092, 3.0600939)
+transform = Transform3D(0.77933794, 0, -0.6266038, 0, 1, 0, 0.6266038, 0, 0.77933794, 4.937353, 0.012252092, -0.058248043)
 
 [node name="SubViewport" type="SubViewport" parent="monitors/monitor3"]
 disable_3d = true
 size = Vector2i(1024, 1024)
 render_target_update_mode = 4
 
-[node name="Screen3" parent="monitors/monitor3/SubViewport" instance=ExtResource("1_jp0d8")]
-anchor_left = 0.0
-anchor_top = 0.016448319
-anchor_right = 0.5
-anchor_bottom = 0.51845515
-offset_left = 260.0
-offset_top = 243.15692
-offset_right = 260.0
-offset_bottom = 243.15692
-scale = Vector2(2.249976, 2.249976)
-metadata/_edit_use_anchors_ = true
+[node name="CRT" type="TextureRect" parent="monitors/monitor3/SubViewport"]
+offset_right = 1020.0
+offset_bottom = 1018.0
+texture = ExtResource("5_hryva")
+expand_mode = 2
 
-[node name="Chaos" parent="monitors/monitor3/SubViewport/Screen3" index="1"]
-initial_point_count = 6
+[node name="Chaos" parent="monitors/monitor3/SubViewport" instance=ExtResource("10_76fpr")]
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor3"]
-transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.501, 2.166, 4.857)
+transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.517, 2.165, 4.881)
 mesh = SubResource("QuadMesh_v3fvj")
-surface_material_override/0 = SubResource("StandardMaterial3D_g6k5w")
+surface_material_override/0 = SubResource("StandardMaterial3D_s7xl2")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.7071067, -0.02467767, 0.706676, 0, 0.99939084, 0.034899496, -0.7071067, -0.02467767, 0.706676, 2.231, 2.06, 6.585)
@@ -589,7 +544,16 @@ bus = &"SFX"
 [connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]
 [connection signal="mouse_entered" from="Control/up" to="." method="_on_up_mouse_entered"]
 [connection signal="mouse_entered" from="Control/down" to="." method="_on_down_mouse_entered"]
-[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/monitor_label/upgrade frac/Button0" to="." method="_on_button_pressed" binds= [0]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/speed_up/Button" to="." method="_on_button_pressed" binds= [0, 0]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/add_vert/Button" to="." method="_on_button_pressed" binds= [0, 1]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button" to="." method="_on_button_pressed" binds= [1, 0]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button" to="." method="_on_button_pressed" binds= [1, 1]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button" to="." method="_on_button_pressed" binds= [2, 0]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button" to="." method="_on_button_pressed" binds= [2, 1]]
+[connection signal="point_generated" from="monitors/monitor1/SubViewport/Chaos" to="." method="_on_chaos_point_generated"]
+[connection signal="point_generated" from="monitors/monitor2/SubViewport/Chaos" to="." method="_on_chaos_point_generated"]
+[connection signal="point_generated" from="monitors/monitor3/SubViewport/Chaos" to="." method="_on_chaos_point_generated"]
 
-[editable path="monitors/monitor2/SubViewport/Screen2"]
-[editable path="monitors/monitor3/SubViewport/Screen3"]
+[editable path="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1"]
+[editable path="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2"]
+[editable path="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3"]

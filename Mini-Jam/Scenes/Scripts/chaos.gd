@@ -1,11 +1,14 @@
 @tool
 extends Node2D
 
+signal point_generated(value)
+
 const RAINBOW = preload("uid://dtvhcsy5y1l65")
 
 ## Scene > Reload Saved Scene to restart script in editor
 @export var run_in_editor := false
 @export var color_coded := true
+@export var draw_outline := true
 @export var default_color := Color.RED
 ## Minimum of 3
 @export var initial_point_count := 3
@@ -21,6 +24,12 @@ var new_point_colors: PackedColorArray
 # Should be automated by a script later
 @export var timer_length := 0.2
 var time := 0.0
+var started := false
+var point_value := 1
+
+func start():
+	started = true
+	visible = true
 
 ## Generates the vertices of a regular n-gon
 func generate_polygon(num_points := 3, radius := 1.0):
@@ -33,8 +42,9 @@ func generate_polygon(num_points := 3, radius := 1.0):
 	return points
 	
 func draw_initial_points():
-	draw_circle(Vector2.ZERO, shape_scale * 1.5, Color.WHITE)
-	draw_circle(Vector2.ZERO, shape_scale * 1.4, Color.BLACK)
+	if draw_outline:
+		draw_circle(Vector2.ZERO, shape_scale * 1.5, Color.WHITE)
+		draw_circle(Vector2.ZERO, shape_scale * 1.4, Color.BLACK)
 	for i in range(initial_point_count):
 		var color = RAINBOW.sample(float(i) / initial_point_count) if color_coded else default_color
 		draw_circle(initial_points[i], initial_point_radius, color)
@@ -58,11 +68,10 @@ func random_point_in_circle(radius: float) -> Vector2:
 func _ready() -> void:
 	initial_points = generate_polygon(initial_point_count, shape_scale)
 	# Approximates random point in the shape by getting random point in circumcircle
-	new_points.append(random_point_in_circle(shape_scale))
 	new_point_colors.append(RAINBOW.sample(float(randi_range(0, initial_point_count)) / initial_point_count))
 	
 func _process(delta: float) -> void:
-	if not (Engine.is_editor_hint() and !run_in_editor):
+	if started and (not (Engine.is_editor_hint() and !run_in_editor)):
 		if time >= timer_length:
 			_timer()
 			time = 0
@@ -72,14 +81,11 @@ func _process(delta: float) -> void:
 # This is where business goes down
 func _draw():
 	draw_initial_points()
-	# Draw new points
-	#if new_points.size() == 1:
-		#draw_circle(new_points[0], new_point_radius, new_point_colors[0] if color_coded else default_color)
-	#else:
 	for i in range(new_points.size()):
 		draw_circle(new_points[i], new_point_radius, new_point_colors[i] if color_coded else default_color)
-	var new_point = get_next_point(initial_points, new_points[-1])
+	var new_point = random_point_in_circle(shape_scale) if new_points.is_empty() else get_next_point(initial_points, new_points[-1])
 	new_points.append(new_point)
 
 func _timer():
 	queue_redraw()
+	emit_signal("point_generated", point_value)

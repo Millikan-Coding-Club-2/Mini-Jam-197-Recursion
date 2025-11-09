@@ -1,0 +1,122 @@
+[gd_scene load_steps=10 format=3 uid="uid://eyjmsd0mvqtg"]
+
+[ext_resource type="FontFile" uid="uid://cgob6mjsiv2s6" path="res://recources/CONSOLAB.TTF" id="1_drif0"]
+[ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="2_orglu"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_3iy4w"]
+font = ExtResource("1_drif0")
+font_size = 63
+
+[sub_resource type="LabelSettings" id="LabelSettings_uq2cn"]
+font = ExtResource("2_orglu")
+font_size = 42
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ibywg"]
+bg_color = Color(1, 1, 1, 0.63529414)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_12ycv"]
+bg_color = Color(0.4, 0.4, 0.4, 0.63529414)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_llnbm"]
+bg_color = Color(0.78, 0.78, 0.78, 0.63529414)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_fhpuh"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vkfas"]
+
+[node name="Monitor1" type="VBoxContainer"]
+custom_minimum_size = Vector2(0, 250)
+
+[node name="monitor_label" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 80)
+layout_mode = 2
+text = "MONITOR 1: 3 VERTICES"
+label_settings = SubResource("LabelSettings_3iy4w")
+
+[node name="speed_up" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 60)
+layout_mode = 2
+text = "SPEED UP"
+label_settings = SubResource("LabelSettings_uq2cn")
+
+[node name="Button" type="Button" parent="speed_up"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = -8.0
+offset_right = 519.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_ibywg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12ycv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_llnbm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fhpuh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vkfas")
+text = "+"
+
+[node name="cost" type="Label" parent="speed_up/Button"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 7.0
+offset_right = 436.0
+offset_bottom = 52.0
+text = "10 DP"
+label_settings = SubResource("LabelSettings_uq2cn")
+metadata/upgrade_cost = 0
+
+[node name="level" type="Label" parent="speed_up/Button"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 7.0
+offset_right = 627.0
+offset_bottom = 52.0
+text = "Lv. 1"
+label_settings = SubResource("LabelSettings_uq2cn")
+
+[node name="add_vert" type="Label" parent="."]
+custom_minimum_size = Vector2(0, 50)
+layout_mode = 2
+text = "ADD VERTEX"
+label_settings = SubResource("LabelSettings_uq2cn")
+
+[node name="Button" type="Button" parent="add_vert"]
+layout_mode = 0
+offset_left = 465.0
+offset_top = -8.0
+offset_right = 519.0
+offset_bottom = 46.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_ibywg")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_12ycv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_llnbm")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_fhpuh")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vkfas")
+text = "+"
+
+[node name="cost" type="Label" parent="add_vert/Button"]
+layout_mode = 0
+offset_left = 84.0
+offset_top = 7.0
+offset_right = 436.0
+offset_bottom = 52.0
+text = "100 DP"
+label_settings = SubResource("LabelSettings_uq2cn")
+metadata/upgrade_cost = 0
+
+[node name="level" type="Label" parent="add_vert/Button"]
+layout_mode = 0
+offset_left = 275.0
+offset_top = 7.0
+offset_right = 627.0
+offset_bottom = 52.0
+text = "Lv. 1"
+label_settings = SubResource("LabelSettings_uq2cn")

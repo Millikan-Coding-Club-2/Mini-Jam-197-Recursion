@@ -1,19 +1,20 @@
    1. MAKE MONITORS CLICKABLE 
 2. FINISH GAMEPLAY LOOP
 	- ADD MANUAL DATA COLLECTION (HOLD TO ADD POINTS)
-	- MAKE POINTS ON FRACTALS EQUAL TO DATA
 	- DATA CAN BE USED TO BUY SPEED UPGRADES OR UPGRADE A THE POLYGON
+		- only allow purchase if you have enough points
+		- subtract data point cost from total
+		- modify fractal based on purchase
 	- EACH SUCCESSIVE POLYGON PRODUCES MORE BUT IT RESETS SPEED UPGRADES
+		- points from an n-gon will be worth n - 2 data points (triangle is 1)
 	- IF ENOUGH DATA ON ONE FRACTAL IS COLLECTED, IT CAN BE TURNED INTO A SIMULATION MODEL
 	  (THIS CAN BE DONE ONCE PER POLYGON)
 	- UNLOCKING MORE SIMULATIONS ON OTHER MONITORS COSTS MODELS
-	- MAKE GROWTH EXPONENTIAL
-	- ENDING AT 1 GOOGLEPLEX DATA
+		- lock monitor controls until they are bought
 3. FINISH VISUALS
-	- add CRT to other monitors
 	- sticky notes for instructions
 3. ADD SFX
 4. ADD LORE
+	- Mr. Johnson voice lines
 
-https://tenor.com/view/hollow-knight-silksong-i-agree-mhm-gif-619887815162023225
-not sure about the simulation models
+outline or no outline around fractals? added an option to toggle
