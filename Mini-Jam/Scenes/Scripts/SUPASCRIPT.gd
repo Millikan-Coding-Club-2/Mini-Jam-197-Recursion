@@ -29,24 +29,34 @@ var data_points = 0:
 		data_points = value
 var current_cam = 0
 
+## Index of labels (SPEED_COST = 0, SPEED_LEVEL = 1...)
 enum {SPEED_COST, SPEED_LEVEL, VERT_COST, VERT_LEVEL}
-enum {VERTEX_UPGRADE, SPEED_UP}
+## Type of upgrade
+enum {SPEED_UP, VERTEX_UPGRADE}
 
 func _ready() -> void:
 	OMEGA_upgrade_labels = [upgrade_labels1, upgrade_labels2, upgrade_labels3]
+	for labels in OMEGA_upgrade_labels:
+		labels[0].text = str(initial_speed_cost) + " DP"
+		labels[2].text = str(initial_vert_cost) + " DP"
 	chaoses[0].start()
-	
-	
+	update_dps()
+
 func cost_at_level(type, level: int) -> int:
 	## TODO: I need my cookie clicker expert to revise this
 	match type:
-		VERTEX_UPGRADE:
-			return initial_vert_cost + int(pow(level, 3) / 2.0)
 		SPEED_UP:
 			return initial_speed_cost + int(pow(level, 2) / 2.0)
+		VERTEX_UPGRADE:
+			return initial_vert_cost + int(pow(level, 3) / 2.0)
 		_:
 			return int("you IDIOT")
-	
+			
+func update_dps():
+	dps = 0
+	for fractal in chaoses:
+		if fractal.get("started") == true:
+			dps += fractal.get("point_value")  * (1/fractal.get("timer_length"))
 
 # fnaf cams if statement monstrosity
 func _on_left_mouse_entered():
@@ -103,14 +113,40 @@ func hide_arrows():
 	up.hide()
 	$Control/down.hide()
 
-func _on_button_pressed(monitor_idx: int, index) -> void:
+## index is the index of the button of the selected monitor (0 or 1)
+func _on_button_pressed(monitor_idx: int, index: int) -> void:
+	# Uncomment this and it should make sense
 	#print("Clicked monitor " + str(monitor_idx) + ", index " + str(index))
-	# Returns level label corresponding to button pressed
-	var label_idx = SPEED_LEVEL + index*2
-	levels[monitor_idx][index] += 1
-	var new_text = "Lv. " + str(levels[monitor_idx][index])
-	OMEGA_upgrade_labels[monitor_idx][label_idx].text = new_text
-	#upgrade_label.text = str(cost_at_level(VERTEX_UPGRADE, levels[index])) + " DP"
+	var cost = cost_at_level(index, levels[monitor_idx][index])
+	if data_points >= cost: # Can afford upgrade
+		var cost_idx: int
+		var level_idx: int
+		var curr_monitor = OMEGA_upgrade_labels[monitor_idx]
+		levels[monitor_idx][index] += 1
+		data_points -= cost
+		var fractal = chaoses[monitor_idx]
+		match index:
+			SPEED_UP:
+				cost_idx = SPEED_COST
+				level_idx = SPEED_LEVEL
+				fractal.speed_up()
+			VERTEX_UPGRADE:
+				cost_idx = VERT_COST
+				level_idx = VERT_LEVEL
+				fractal.add_vert()
+				var vertex_count = str(3 + levels[monitor_idx][VERTEX_UPGRADE] - 1)
+				monitor_labels[monitor_idx].text = "MONITOR " + str(monitor_idx+1) + ": " + vertex_count + " VERTICES"
+				levels[monitor_idx][SPEED_UP] = 1
+				curr_monitor[SPEED_COST].text = str(initial_speed_cost) + " DP"
+				curr_monitor[SPEED_LEVEL].text = "Lv. " + str(levels[monitor_idx][SPEED_UP])
+				fractal.restart()
+		update_dps()
+		var new_cost = str(cost_at_level(index, levels[monitor_idx][index])) + " DP"
+		curr_monitor[cost_idx].text = new_cost
+		var new_level = "Lv. " + str(levels[monitor_idx][index])
+		curr_monitor[level_idx].text = new_level
+	else: # Can't afford upgrade
+		pass
 
 func _on_chaos_point_generated(value: int) -> void:
 	data_points += value

@@ -12,24 +12,51 @@ const RAINBOW = preload("uid://dtvhcsy5y1l65")
 @export var default_color := Color.RED
 ## Minimum of 3
 @export var initial_point_count := 3
+## Radius of polygon vertices
 @export var initial_point_radius := 10.0
 #@export var point_color := Color.RED
 ## Radius of the circumcircle of the regular polygon
 @export var shape_scale := 50.0
+## Radius of generated points
 @export var new_point_radius := 5.0
+## How fast the value of points grows
+@export var value_factor := 1.0
+## How much the fractal speeds up after an upgrade in DP/s per additional vertex
+@export var speed_up_amount := 0.1
 
 var initial_points: PackedVector2Array
 var new_points: PackedVector2Array
 var new_point_colors: PackedColorArray
-# Should be automated by a script later
-@export var timer_length := 0.2
+
+var initial_timer_length := 5.0
+var timer_length: float
 var time := 0.0
 var started := false
-var point_value := 1
+var point_value: int:
+	get():
+		return floor(pow(2, initial_point_count - 3) * value_factor)
 
 func start():
 	started = true
 	visible = true
+	# Approximates random point in the shape by getting random point in circumcircle
+	initial_points = generate_polygon(initial_point_count, shape_scale)
+	
+func restart():
+	time = 0.0
+	timer_length = initial_timer_length
+	new_points.clear()
+	initial_points.clear()
+	start()
+	queue_redraw()
+	
+func speed_up():
+	timer_length = 1 / (1 / timer_length + speed_up_amount)
+	
+func add_vert():
+	initial_point_count += 1
+	if started:
+		restart()
 
 ## Generates the vertices of a regular n-gon
 func generate_polygon(num_points := 3, radius := 1.0):
@@ -66,8 +93,9 @@ func random_point_in_circle(radius: float) -> Vector2:
 	return normalized * radius * randf_range(0.0, 1.0)
 
 func _ready() -> void:
-	initial_points = generate_polygon(initial_point_count, shape_scale)
+	timer_length = initial_timer_length
 	# Approximates random point in the shape by getting random point in circumcircle
+	initial_points = generate_polygon(initial_point_count, shape_scale)
 	new_point_colors.append(RAINBOW.sample(float(randi_range(0, initial_point_count)) / initial_point_count))
 	
 func _process(delta: float) -> void:

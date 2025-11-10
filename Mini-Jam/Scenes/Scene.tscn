@@ -212,6 +212,8 @@ upgrade_labels1 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/
 upgrade_labels2 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/level")]
 upgrade_labels3 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/level")]
 chaoses = [NodePath("monitors/monitor1/SubViewport/Chaos"), NodePath("monitors/monitor2/SubViewport/Chaos"), NodePath("monitors/monitor3/SubViewport/Chaos")]
+initial_speed_cost = 1
+initial_vert_cost = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_347al")
@@ -429,6 +431,8 @@ texture = ExtResource("5_hryva")
 expand_mode = 2
 
 [node name="Chaos" parent="monitors/monitor1/SubViewport" instance=ExtResource("10_76fpr")]
+value_factor = 1.0
+speed_up_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor1"]
 transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.501, 2.166, 4.857)
@@ -450,6 +454,8 @@ texture = ExtResource("5_hryva")
 expand_mode = 2
 
 [node name="Chaos" parent="monitors/monitor2/SubViewport" instance=ExtResource("10_76fpr")]
+value_factor = 1.0
+speed_up_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor2"]
 transform = Transform3D(0.7046342, -0.104881234, 0.7017767, 0, 0.989016, 0.1478094, -0.7095707, -0.10415157, 0.6968944, 0.505, 2.187, 4.868)
@@ -471,6 +477,8 @@ texture = ExtResource("5_hryva")
 expand_mode = 2
 
 [node name="Chaos" parent="monitors/monitor3/SubViewport" instance=ExtResource("10_76fpr")]
+value_factor = 1.0
+speed_up_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor3"]
 transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.517, 2.165, 4.881)
