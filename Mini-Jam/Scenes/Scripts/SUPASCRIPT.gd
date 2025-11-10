@@ -26,6 +26,26 @@ var OMEGA_upgrade_labels: Array
 @export var initial_speed_cost: int = 10
 @export var initial_vert_cost: int = 100
 
+
+var hold_timer := 0.0
+const HOLD_INTERVAL := 1.0  # seconds
+
+@onready var sfx_player = $sfx/beeping
+
+func _process(delta):
+	if Input.is_action_pressed("mouse_left")and not up.visible:  # or "ui_select" if mapped
+		if not sfx_player.playing:
+			sfx_player.play()
+		hold_timer += delta
+		if hold_timer >= HOLD_INTERVAL:
+			hold_timer = 0.0
+			data_points += 1
+			print('e')
+	else:
+		if sfx_player.playing:
+			sfx_player.stop()
+		hold_timer = 0.0
+
 var best_fractal: Node2D
 var sm_percent := 0.0:
 	get():

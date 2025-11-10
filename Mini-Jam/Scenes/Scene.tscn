@@ -1,4 +1,4 @@
-[gd_scene load_steps=87 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=88 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scenes/Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
@@ -28,6 +28,7 @@
 [ext_resource type="AudioStream" uid="uid://bpslcaehn8pvt" path="res://sfx/keyboard-press-351952.mp3" id="21_cyl7o"]
 [ext_resource type="AudioStream" uid="uid://blc406648ossf" path="res://sfx/spacebar-click-keyboard-199448.mp3" id="22_dsovk"]
 [ext_resource type="AudioStream" uid="uid://mqey82go5ssh" path="res://sfx/mech-keyboard-02-102918.mp3" id="23_acuia"]
+[ext_resource type="AudioStream" uid="uid://boypypn3vr108" path="res://sfx/clickbeep.ogg" id="29_836gv"]
 [ext_resource type="AudioStream" uid="uid://dvicynyct2w28" path="res://sfx/intercom/Good 1.ogg" id="29_bln57"]
 [ext_resource type="AudioStream" uid="uid://p3tiv84w8iul" path="res://sfx/intercom/Good 2.ogg" id="30_836gv"]
 [ext_resource type="AudioStream" uid="uid://b4854exi4ijxg" path="res://sfx/intercom/Good 11.ogg" id="31_j6p0v"]
@@ -631,6 +632,7 @@ libraries = {
 [node name="sfx" type="Node" parent="."]
 script = ExtResource("15_sbjbj")
 cracking = false
+Mr_Johnson = false
 
 [node name="crack1" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("15_wqtk0")
@@ -658,7 +660,11 @@ bus = &"Ambience"
 stream = SubResource("AudioStreamRandomizer_h5s1o")
 bus = &"SFX"
 
-[node name="AudioStreamPlayer2D7" type="AudioStreamPlayer2D" parent="sfx"]
+[node name="beeping" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("29_836gv")
+bus = &"SFX"
+
+[node name="AudioStreamPlayer2D8" type="AudioStreamPlayer2D" parent="sfx"]
 bus = &"SFX"
 
 [node name="intercom" type="Node" parent="sfx"]
@@ -666,14 +672,17 @@ bus = &"SFX"
 [node name="intercom" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = SubResource("AudioStreamRandomizer_k15wk")
 volume_db = 8.0
+bus = &"Mr Johnson"
 
 [node name="intro" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = ExtResource("50_7sk3x")
 volume_db = 8.0
+bus = &"Mr Johnson"
 
 [node name="beep" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = ExtResource("51_bln57")
 volume_db = -3.0
+bus = &"Mr Johnson"
 
 [node name="intercom_timer" type="Timer" parent="sfx/intercom"]
 wait_time = 200.0
