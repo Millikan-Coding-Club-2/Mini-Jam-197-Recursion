@@ -5,6 +5,8 @@ extends Node3D
 @onready var right = $Control/right
 @onready var up = $Control/up
 @onready var down = $Control/down
+@onready var clicks: AudioStreamPlayer2D = $sfx/clicks
+
 # Monitor UI
 @onready var data_point_label: Label = $"monitors/MainMonitor/HomeScreen/SubViewport/Screen/data_points/data"
 @onready var dps_label: Label = $"monitors/MainMonitor/HomeScreen/SubViewport/Screen/data_points/dps"
@@ -39,8 +41,7 @@ func _process(delta):
 		hold_timer += delta
 		if hold_timer >= HOLD_INTERVAL:
 			hold_timer = 0.0
-			data_points += 1
-			print('e')
+			data_points += 0.25 * dps
 	else:
 		if sfx_player.playing:
 			sfx_player.stop()
@@ -68,7 +69,7 @@ var dps:
 		dps_label.text = str(value) + " DP/s"
 		dps = value
 var levels: Array[Array] = [[1, 1], [1, 1], [1, 1]]
-var data_points = 0:
+var data_points := 0:
 	set(value):
 		data_point_label.text = str(value)
 		data_points = value
@@ -91,9 +92,9 @@ func cost_at_level(type, level: int) -> int:
 	## TODO: I need my cookie clicker expert to revise this
 	match type:
 		SPEED_UP:
-			return initial_speed_cost + int(pow(level, 2) / 2.0)
+			return int(pow(level, 2) + 9)
 		VERTEX_UPGRADE:
-			return initial_vert_cost + int(pow(level, 3) / 2.0)
+			return int(pow(2, level + 6) - 28)
 		_:
 			return int("you IDIOT")
 			
@@ -157,13 +158,20 @@ func hide_arrows():
 	right.hide()
 	up.hide()
 	$Control/down.hide()
+	
+func subtract_dp(fractal, amount: int):
+	fractal.subtract(amount)
+	sm_percent_button.text = str(int(sm_percent)) + "%"
+	progress.size.y = 250 * sm_percent / 100
 
 ## index is the index of the button of the selected monitor (0 or 1)
 func _on_button_pressed(monitor_idx: int, index: int) -> void:
 	# Uncomment this and it should make sense
 	#print("Clicked monitor " + str(monitor_idx) + ", index " + str(index))
+	clicks.play()
 	var cost = cost_at_level(index, levels[monitor_idx][index])
 	if data_points >= cost: # Can afford upgrade
+		subtract_dp(chaoses[monitor_idx], cost)
 		var cost_idx: int
 		var level_idx: int
 		var curr_monitor = OMEGA_upgrade_labels[monitor_idx]

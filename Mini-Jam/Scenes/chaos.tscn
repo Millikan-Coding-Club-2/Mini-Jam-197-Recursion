@@ -10,4 +10,4 @@ script = ExtResource("1_3yke4")
 initial_point_radius = 5.0
 new_point_radius = 2.0
 value_factor = 2.0
-speed_up_amount = null
+speed_up_amount = 1.0

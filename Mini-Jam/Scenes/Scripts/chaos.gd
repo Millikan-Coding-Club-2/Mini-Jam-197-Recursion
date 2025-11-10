@@ -31,7 +31,7 @@ var initial_points: PackedVector2Array
 var new_points: PackedVector2Array
 var new_point_colors: PackedColorArray
 
-var initial_timer_length := 5.0
+var initial_timer_length := 1.0
 var timer_length: float
 var time := 0.0
 var started := false
@@ -56,6 +56,10 @@ func restart():
 	points_generated = 0
 	start()
 	queue_redraw()
+	
+func subtract(amount):
+	points_generated -= amount
+	new_points.resize(new_points.size() - amount * point_value)
 	
 func speed_up():
 	timer_length = 1 / (1 / timer_length + speed_up_amount)
@@ -120,10 +124,13 @@ func _draw():
 		draw_circle(new_points[i], new_point_radius, new_point_colors[i] if color_coded else default_color)
 	var new_point = random_point_in_circle(shape_scale) if new_points.is_empty() else get_next_point(initial_points, new_points[-1])
 	new_points.append(new_point)
-
-func _timer():
+	
+func add_point():
 	points_generated += point_value
 	queue_redraw()
 	emit_signal("point_generated", point_value)
 	if points_generated >= completion_points:
 		emit_signal("fractal_completed")
+
+func _timer():
+	add_point()
