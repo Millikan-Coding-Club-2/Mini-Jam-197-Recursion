@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://pt73aotus6q0"
+path="res://.godot/imported/Intro (beginning).ogg-cbc45acb15a4a983c800e2d9a6ebc98c.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Intro (beginning).ogg"
+dest_files=["res://.godot/imported/Intro (beginning).ogg-cbc45acb15a4a983c800e2d9a6ebc98c.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

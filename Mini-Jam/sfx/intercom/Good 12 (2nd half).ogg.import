@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b8i16f53yillx"
+path="res://.godot/imported/Good 12 (2nd half).ogg-3443326bfb34bcd68239cc932ba52a7b.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Good 12 (2nd half).ogg"
+dest_files=["res://.godot/imported/Good 12 (2nd half).ogg-3443326bfb34bcd68239cc932ba52a7b.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

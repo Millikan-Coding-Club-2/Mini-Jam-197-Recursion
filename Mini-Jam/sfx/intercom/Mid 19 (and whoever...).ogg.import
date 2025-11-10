@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://bphywn1ugsjj0"
+path="res://.godot/imported/Mid 19 (and whoever...).ogg-0fa00df800baf21bc30b8f6fd5f4302a.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Mid 19 (and whoever...).ogg"
+dest_files=["res://.godot/imported/Mid 19 (and whoever...).ogg-0fa00df800baf21bc30b8f6fd5f4302a.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

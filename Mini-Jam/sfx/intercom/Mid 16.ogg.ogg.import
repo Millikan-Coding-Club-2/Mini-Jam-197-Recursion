@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://wm15mrr4b78s"
+path="res://.godot/imported/Mid 16.ogg.ogg-7a10b3128321175c204cef6ee1504700.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Mid 16.ogg.ogg"
+dest_files=["res://.godot/imported/Mid 16.ogg.ogg-7a10b3128321175c204cef6ee1504700.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

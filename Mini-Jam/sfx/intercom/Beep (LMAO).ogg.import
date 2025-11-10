@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://hhvyysdfib8j"
+path="res://.godot/imported/Beep (LMAO).ogg-f26cc9bfbb87b0310423945cb328d87e.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Beep (LMAO).ogg"
+dest_files=["res://.godot/imported/Beep (LMAO).ogg-f26cc9bfbb87b0310423945cb328d87e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

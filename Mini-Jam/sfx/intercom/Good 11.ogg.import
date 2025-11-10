@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://b4854exi4ijxg"
+path="res://.godot/imported/Good 11.ogg-9092393ac6af22f8df70af9eed00c729.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Good 11.ogg"
+dest_files=["res://.godot/imported/Good 11.ogg-9092393ac6af22f8df70af9eed00c729.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

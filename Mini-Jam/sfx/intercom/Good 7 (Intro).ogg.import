@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://ce5bs3bsuuuuq"
+path="res://.godot/imported/Good 7 (Intro).ogg-0bdc0fd7f999900ce99ab834ffc0f57e.oggvorbisstr"
+
+[deps]
+
+source_file="res://sfx/intercom/Good 7 (Intro).ogg"
+dest_files=["res://.godot/imported/Good 7 (Intro).ogg-0bdc0fd7f999900ce99ab834ffc0f57e.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
