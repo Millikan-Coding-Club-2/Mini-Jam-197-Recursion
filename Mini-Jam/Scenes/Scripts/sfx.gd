@@ -19,7 +19,7 @@ func _ready():
 		$crack4.volume_db = -80
 	if ambience == false:
 		$ambience.volume_db = -80
-	await get_tree().create_timer(7).timeout
+	await get_tree().create_timer(3).timeout
 	beep.play()
 	await beep.finished
 	intro.play()

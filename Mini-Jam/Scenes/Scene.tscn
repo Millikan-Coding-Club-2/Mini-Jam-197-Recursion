@@ -666,17 +666,14 @@ bus = &"SFX"
 [node name="intercom" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = SubResource("AudioStreamRandomizer_k15wk")
 volume_db = 8.0
-bus = &"Mr Johnson"
 
 [node name="intro" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = ExtResource("50_7sk3x")
 volume_db = 8.0
-bus = &"Mr Johnson"
 
 [node name="beep" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = ExtResource("51_bln57")
 volume_db = -3.0
-bus = &"Mr Johnson"
 
 [node name="intercom_timer" type="Timer" parent="sfx/intercom"]
 wait_time = 200.0

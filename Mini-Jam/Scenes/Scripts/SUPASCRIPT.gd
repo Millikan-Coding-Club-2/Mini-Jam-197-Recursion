@@ -26,12 +26,18 @@ var OMEGA_upgrade_labels: Array
 @export var initial_speed_cost: int = 10
 @export var initial_vert_cost: int = 100
 
+var best_fractal: Node2D
 var sm_percent := 0.0:
 	get():
 		var percents: Array[float]
+		var max_percent := 0.0
 		for fractal in chaoses:
-			if fractal.get("have_completed") == false:
-				percents.append(100 * (float(fractal.get("points_generated")) / fractal.get("completion_points")))
+			var percent = 100 * (float(fractal.get("points_generated")) / fractal.get("completion_points"))
+			if (not fractal.get("have_completed")) and percent > max_percent:
+				max_percent = percent
+				best_fractal = fractal
+				percents.append(percent)
+
 		return percents.max() if not percents.is_empty() else 0.0
 var simulation_models := 0:
 	set(value):
@@ -171,14 +177,14 @@ func _on_button_pressed(monitor_idx: int, index: int) -> void:
 
 func _on_chaos_point_generated(value: int) -> void:
 	data_points += value
-	if sm_percent <= 100:
-		sm_percent_button.text = str(int(sm_percent)) + "%" # Could bug out when all monitors are unlocked
-		progress.size.y = 250 * sm_percent / 100
+	sm_percent_button.text = str(int(sm_percent)) + "%" # Could bug out when all monitors are unlocked
+	progress.size.y = 250 * sm_percent / 100
 		
 func _on_percent_pressed() -> void:
-	if sm_percent <= 100:
-		# TODO: reset sm_percent
+	if sm_percent >= 100:
+		best_fractal.restart()
 		sm_percent_button.text = "0%"
+		progress.size.y = 250 * sm_percent / 100
 		simulation_models += 1
 		
 func _on_unlock_pressed(monitor: int) -> void:

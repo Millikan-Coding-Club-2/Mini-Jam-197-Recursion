@@ -48,6 +48,7 @@ func start():
 	initial_points = generate_polygon(initial_point_count, shape_scale)
 	
 func restart():
+	have_completed = true
 	time = 0.0
 	timer_length = initial_timer_length
 	new_points.clear()
@@ -125,5 +126,4 @@ func _timer():
 	queue_redraw()
 	emit_signal("point_generated", point_value)
 	if points_generated >= completion_points:
-		have_completed = true
 		emit_signal("fractal_completed")
