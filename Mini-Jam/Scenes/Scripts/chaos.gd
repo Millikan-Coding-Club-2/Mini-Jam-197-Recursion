@@ -19,11 +19,11 @@ const RAINBOW = preload("uid://dtvhcsy5y1l65")
 ## Radius of the circumcircle of the regular polygon
 @export var shape_scale := 50.0
 ## Radius of generated points
-@export var new_point_radius := 5.0
+@export var new_point_radius := 1.0
 ## How fast the value of points grows
 @export var value_factor := 1.0
 ## How much the fractal speeds up after an upgrade in DP/s per additional vertex
-@export var speed_up_amount := 0.1
+@export var speed_up_amount := 1
 ## Number of points before completion
 @export var completion_points := 1000
 
@@ -56,7 +56,7 @@ func restart():
 	points_generated = 0
 	start()
 	queue_redraw()
-	
+
 func subtract(amount):
 	points_generated -= amount
 	new_points.resize(new_points.size() - amount * point_value)

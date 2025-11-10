@@ -1,13 +1,13 @@
-[gd_scene load_steps=88 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=94 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scenes/Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
 [ext_resource type="Texture2D" uid="uid://ds6r3tugpuybp" path="res://sprites/arrow.png" id="2_qswnl"]
+[ext_resource type="Script" uid="uid://dqigkub125lgt" path="res://Scenes/points.gd" id="2_yp0cs"]
 [ext_resource type="PackedScene" uid="uid://ce8t4uuqxyq51" path="res://models/keyboard/monitor.glb" id="3_v3fvj"]
 [ext_resource type="Script" uid="uid://bbbktdg05mnbn" path="res://Scenes/Scripts/UI_3D.gd" id="4_76fpr"]
 [ext_resource type="PackedScene" uid="uid://dhii1xkgpvpm7" path="res://models/monitor/monitor.glb" id="4_qswnl"]
 [ext_resource type="Texture2D" uid="uid://c3fgmtbw05tcu" path="res://sprites/CRT.jpg" id="5_hryva"]
-[ext_resource type="Texture2D" uid="uid://ccqwknmrfjnfl" path="res://sprites/stickynote1.png" id="5_v5su0"]
 [ext_resource type="FontFile" uid="uid://cgob6mjsiv2s6" path="res://recources/CONSOLAB.TTF" id="6_x0tcf"]
 [ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="7_3j0kp"]
 [ext_resource type="PackedScene" uid="uid://eyjmsd0mvqtg" path="res://Scenes/monitorlabel.tscn" id="8_hryva"]
@@ -17,8 +17,11 @@
 [ext_resource type="PackedScene" uid="uid://ce0mfkywvvi7p" path="res://Scenes/chaos.tscn" id="10_76fpr"]
 [ext_resource type="Texture2D" uid="uid://b2nn5xfus6ei7" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Displacement.jpg" id="10_v5su0"]
 [ext_resource type="Texture2D" uid="uid://dtcpdpllxbrge" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Metalness.jpg" id="11_g8qr1"]
+[ext_resource type="Texture2D" uid="uid://gkvfdrfqumlq" path="res://sprites/stickynote4.png" id="11_lm725"]
 [ext_resource type="Texture2D" uid="uid://ccgtkiwdfmsyw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_NormalGL.jpg" id="12_i4o5d"]
+[ext_resource type="Texture2D" uid="uid://bfc07lpqkfisp" path="res://sprites/stickynote2.png" id="13_wqxfd"]
 [ext_resource type="Texture2D" uid="uid://bmegcio10fetw" path="res://models/ceiling texture/OfficeCeiling001_1K-JPG_Roughness.jpg" id="13_xv20y"]
+[ext_resource type="Texture2D" uid="uid://sbc6xfwkwa6l" path="res://sprites/stickynote3.png" id="14_lm725"]
 [ext_resource type="Script" uid="uid://fo4c6pp1mrpw" path="res://Scenes/Scripts/sfx.gd" id="15_sbjbj"]
 [ext_resource type="AudioStream" uid="uid://b8udi0v3c2pf8" path="res://sfx/bone-break-2-218511.mp3" id="15_wqtk0"]
 [ext_resource type="AudioStream" uid="uid://cvk6dgdxtdglr" path="res://sfx/bone-break-3-218510.mp3" id="16_sbjbj"]
@@ -31,6 +34,7 @@
 [ext_resource type="AudioStream" uid="uid://boypypn3vr108" path="res://sfx/clickbeep.ogg" id="29_836gv"]
 [ext_resource type="AudioStream" uid="uid://dvicynyct2w28" path="res://sfx/intercom/Good 1.ogg" id="29_bln57"]
 [ext_resource type="AudioStream" uid="uid://p3tiv84w8iul" path="res://sfx/intercom/Good 2.ogg" id="30_836gv"]
+[ext_resource type="AudioStream" uid="uid://6j8v48w4ljny" path="res://sfx/data-reveal-sound-6460.mp3" id="30_j6p0v"]
 [ext_resource type="AudioStream" uid="uid://b4854exi4ijxg" path="res://sfx/intercom/Good 11.ogg" id="31_j6p0v"]
 [ext_resource type="AudioStream" uid="uid://b8i16f53yillx" path="res://sfx/intercom/Good 12 (2nd half).ogg" id="32_yp0cs"]
 [ext_resource type="AudioStream" uid="uid://dy08mj036jd0n" path="res://sfx/intercom/Good 13.ogg" id="33_wqxfd"]
@@ -112,9 +116,9 @@ size = Vector3(1, 1, 0.1)
 
 [sub_resource type="QuadMesh" id="QuadMesh_g8qr1"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i4o5d"]
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ysp1i"]
 transparency = 1
-albedo_texture = ExtResource("5_v5su0")
+albedo_texture = ExtResource("11_lm725")
 
 [sub_resource type="QuadMesh" id="QuadMesh_v3fvj"]
 lightmap_size_hint = Vector2i(9, 7)
@@ -134,12 +138,20 @@ viewport_path = NodePath("monitors/monitor2/SubViewport")
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_qswnl")
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lm725"]
+transparency = 1
+albedo_texture = ExtResource("13_wqxfd")
+
 [sub_resource type="ViewportTexture" id="ViewportTexture_khr67"]
 viewport_path = NodePath("monitors/monitor3/SubViewport")
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s7xl2"]
 resource_local_to_scene = true
 albedo_texture = SubResource("ViewportTexture_khr67")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i510d"]
+transparency = 1
+albedo_texture = ExtResource("14_lm725")
 
 [sub_resource type="BoxMesh" id="BoxMesh_o8g73"]
 lightmap_size_hint = Vector2i(104, 156)
@@ -269,6 +281,9 @@ upgrade_labels1 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/
 upgrade_labels2 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/level")]
 upgrade_labels3 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/level")]
 chaoses = [NodePath("monitors/monitor1/SubViewport/Chaos"), NodePath("monitors/monitor2/SubViewport/Chaos"), NodePath("monitors/monitor3/SubViewport/Chaos")]
+
+[node name="points" type="Node2D" parent="."]
+script = ExtResource("2_yp0cs")
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_347al")
@@ -431,7 +446,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_x0tcf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3j0kp")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv80f")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbfpv")
-text = "+ UNLOCK MONITOR 2"
+text = "UNLOCK MONITOR 2 (1 SM)"
 
 [node name="Monitor3" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList" instance=ExtResource("8_hryva")]
 visible = false
@@ -454,7 +469,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_x0tcf")
 theme_override_styles/hover = SubResource("StyleBoxFlat_3j0kp")
 theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv80f")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_pbfpv")
-text = "+ UNLOCK MONITOR 3"
+text = "UNLOCK MONITOR 3 (3 SM)"
 
 [node name="model" type="TextureRect" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
 layout_mode = 1
@@ -524,10 +539,10 @@ surface_material_override/0 = SubResource("StandardMaterial3D_hryva")
 shape = SubResource("BoxShape3D_bgtb3")
 
 [node name="sticky not" type="MeshInstance3D" parent="monitors/MainMonitor"]
-transform = Transform3D(0.46188763, -0.040197726, 0.501891, -0.00910377, 0.41879767, 0.10877451, -0.45115477, -0.04960487, 0.5116361, 0.19182315, 1.3935093, 5.470465)
+transform = Transform3D(0.3990845, -0.034732018, 0.43364862, -0.007865925, 0.36185354, 0.09398438, -0.389811, -0.04286007, 0.44206864, 0.25927308, 1.3854421, 5.3794627)
 mesh = SubResource("QuadMesh_g8qr1")
 skeleton = NodePath("../../../desk")
-surface_material_override/0 = SubResource("StandardMaterial3D_i4o5d")
+surface_material_override/0 = SubResource("StandardMaterial3D_ysp1i")
 
 [node name="monitor1" parent="monitors" instance=ExtResource("4_qswnl")]
 transform = Transform3D(0.77955663, 0, 0.62633175, 0, 1, 0, -0.62633175, 0, 0.77955663, -3.822319, 0.012252092, 3.0600939)
@@ -544,8 +559,6 @@ texture = ExtResource("5_hryva")
 expand_mode = 2
 
 [node name="Chaos" parent="monitors/monitor1/SubViewport" instance=ExtResource("10_76fpr")]
-value_factor = 1.0
-speed_up_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor1"]
 transform = Transform3D(0.7144727, -0.13110384, 0.6872704, 0, 0.98228735, 0.18738133, -0.6996634, -0.13387884, 0.7018174, 0.501, 2.166, 4.857)
@@ -567,13 +580,17 @@ texture = ExtResource("5_hryva")
 expand_mode = 2
 
 [node name="Chaos" parent="monitors/monitor2/SubViewport" instance=ExtResource("10_76fpr")]
-value_factor = 1.0
-speed_up_amount = 0.1
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor2"]
 transform = Transform3D(0.7046342, -0.104881234, 0.7017767, 0, 0.989016, 0.1478094, -0.7095707, -0.10415157, 0.6968944, 0.505, 2.187, 4.868)
 mesh = SubResource("QuadMesh_v3fvj")
 surface_material_override/0 = SubResource("StandardMaterial3D_khr67")
+
+[node name="sticky not" type="MeshInstance3D" parent="monitors/monitor2"]
+transform = Transform3D(0.36411214, -0.031688385, 0.3956471, -0.0071766414, 0.33014375, 0.08574834, -0.35565108, -0.039104152, 0.40332928, 0.91483915, 1.2167773, 4.7604184)
+mesh = SubResource("QuadMesh_g8qr1")
+skeleton = NodePath("../../../desk")
+surface_material_override/0 = SubResource("StandardMaterial3D_lm725")
 
 [node name="monitor3" parent="monitors" instance=ExtResource("4_qswnl")]
 transform = Transform3D(0.77933794, 0, -0.6266038, 0, 1, 0, 0.6266038, 0, 0.77933794, 4.937353, 0.012252092, -0.058248043)
@@ -590,13 +607,18 @@ texture = ExtResource("5_hryva")
 expand_mode = 2
 
 [node name="Chaos" parent="monitors/monitor3/SubViewport" instance=ExtResource("10_76fpr")]
-value_factor = 1.0
-speed_up_amount = 0.1
+speed_up_amount = 0
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="monitors/monitor3"]
 transform = Transform3D(0.71447265, -0.13110384, 0.68727034, 0, 0.98228735, 0.18738131, -0.69966334, -0.13387884, 0.70181733, 0.517, 2.165, 4.881)
 mesh = SubResource("QuadMesh_v3fvj")
 surface_material_override/0 = SubResource("StandardMaterial3D_s7xl2")
+
+[node name="sticky not" type="MeshInstance3D" parent="monitors/monitor3"]
+transform = Transform3D(0.36411235, -0.031688385, 0.3956471, -0.0071766414, 0.33014375, 0.08574834, -0.35565117, -0.039104167, 0.40332934, 1.1000617, 1.2399387, 4.6114974)
+mesh = SubResource("QuadMesh_g8qr1")
+skeleton = NodePath("../../../desk")
+surface_material_override/0 = SubResource("StandardMaterial3D_i510d")
 
 [node name="Camera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.7071067, -0.02467767, 0.706676, 0, 0.99939084, 0.034899496, -0.7071067, -0.02467767, 0.706676, 2.231, 2.06, 6.585)
@@ -632,7 +654,6 @@ libraries = {
 [node name="sfx" type="Node" parent="."]
 script = ExtResource("15_sbjbj")
 cracking = false
-Mr_Johnson = false
 
 [node name="crack1" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("15_wqtk0")
@@ -662,6 +683,11 @@ bus = &"SFX"
 
 [node name="beeping" type="AudioStreamPlayer2D" parent="sfx"]
 stream = ExtResource("29_836gv")
+volume_db = -15.0
+bus = &"SFX"
+
+[node name="model buy" type="AudioStreamPlayer2D" parent="sfx"]
+stream = ExtResource("30_j6p0v")
 bus = &"SFX"
 
 [node name="AudioStreamPlayer2D8" type="AudioStreamPlayer2D" parent="sfx"]
@@ -672,17 +698,20 @@ bus = &"SFX"
 [node name="intercom" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = SubResource("AudioStreamRandomizer_k15wk")
 volume_db = 8.0
+bus = &"Mr Johnson"
 
 [node name="intro" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = ExtResource("50_7sk3x")
 volume_db = 8.0
+bus = &"Mr Johnson"
 
 [node name="beep" type="AudioStreamPlayer2D" parent="sfx/intercom"]
 stream = ExtResource("51_bln57")
 volume_db = -3.0
+bus = &"Mr Johnson"
 
 [node name="intercom_timer" type="Timer" parent="sfx/intercom"]
-wait_time = 200.0
+wait_time = 100.0
 
 [connection signal="mouse_entered" from="Control/left" to="." method="_on_left_mouse_entered"]
 [connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]

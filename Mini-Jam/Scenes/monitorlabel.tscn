@@ -44,7 +44,7 @@ label_settings = SubResource("LabelSettings_3iy4w")
 [node name="speed_up" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
-text = "SPEED UP"
+text = "SPEED UP (+1 DP/s)"
 label_settings = SubResource("LabelSettings_uq2cn")
 
 [node name="Button" type="Button" parent="speed_up"]
@@ -88,7 +88,7 @@ label_settings = SubResource("LabelSettings_uq2cn")
 [node name="add_vert" type="Label" parent="."]
 custom_minimum_size = Vector2(0, 50)
 layout_mode = 2
-text = "ADD VERTEX"
+text = "ADD VERTEX (x2 DP/s)"
 label_settings = SubResource("LabelSettings_uq2cn")
 
 [node name="Button" type="Button" parent="add_vert"]

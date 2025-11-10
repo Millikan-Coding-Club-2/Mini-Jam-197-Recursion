@@ -27,6 +27,7 @@ var OMEGA_upgrade_labels: Array
 
 @export var initial_speed_cost: int = 10
 @export var initial_vert_cost: int = 100
+@onready var points = $points
 
 
 var hold_timer := 0.0
@@ -35,13 +36,14 @@ const HOLD_INTERVAL := 1.0  # seconds
 @onready var sfx_player = $sfx/beeping
 
 func _process(delta):
-	if Input.is_action_pressed("mouse_left")and not up.visible:  # or "ui_select" if mapped
+	if Input.is_action_pressed("mouse_left") and not up.visible:  # or "ui_select" if mapped
 		if not sfx_player.playing:
 			sfx_player.play()
 		hold_timer += delta
 		if hold_timer >= HOLD_INTERVAL:
 			hold_timer = 0.0
 			data_points += 0.25 * dps
+			points.thingy(0.25 * dps)
 	else:
 		if sfx_player.playing:
 			sfx_player.stop()
@@ -217,6 +219,7 @@ func _on_percent_pressed() -> void:
 		
 func _on_unlock_pressed(monitor: int) -> void:
 	if simulation_models >= 1:
+		$"sfx/model buy".play()
 		simulation_models -= 1
 		match monitor:
 			2:

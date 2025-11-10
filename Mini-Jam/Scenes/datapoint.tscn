@@ -1,0 +1,76 @@
+[gd_scene load_steps=6 format=3 uid="uid://bh80q7pd2hy1l"]
+
+[ext_resource type="FontFile" uid="uid://bmyih17nfop8y" path="res://recources/CONSOLA.TTF" id="1_brbym"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_y8qcb"]
+font = ExtResource("1_brbym")
+font_size = 19
+
+[sub_resource type="Animation" id="Animation_cyguu"]
+resource_name = "fly"
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.2, 36, 81, -0.6333333, -32, 0, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0, 2),
+"points": PackedFloat32Array(0, -0.25, 0, 0.33333334, -58, -62, -0.36666667, 9, 0, 0),
+"times": PackedFloat32Array(0, 0.7)
+}
+
+[sub_resource type="Animation" id="Animation_a3s81"]
+length = 0.001
+tracks/0/type = "bezier"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Label:position:x")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+tracks/1/type = "bezier"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Label:position:y")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"handle_modes": PackedInt32Array(0),
+"points": PackedFloat32Array(0, -0.25, 0, 0.25, 0),
+"times": PackedFloat32Array(0)
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_6t7wn"]
+_data = {
+&"RESET": SubResource("Animation_a3s81"),
+&"fly": SubResource("Animation_cyguu")
+}
+
+[node name="DATAPOINT" type="Node2D"]
+
+[node name="Label" type="Label" parent="."]
+offset_right = 53.000015
+offset_bottom = 23.0
+text = "+1 DP"
+label_settings = SubResource("LabelSettings_y8qcb")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+libraries = {
+&"": SubResource("AnimationLibrary_6t7wn")
+}
