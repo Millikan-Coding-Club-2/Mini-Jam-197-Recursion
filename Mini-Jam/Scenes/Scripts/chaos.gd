@@ -2,6 +2,7 @@
 extends Node2D
 
 signal point_generated(value)
+signal fractal_completed(index)
 
 const RAINBOW = preload("uid://dtvhcsy5y1l65")
 
@@ -23,6 +24,8 @@ const RAINBOW = preload("uid://dtvhcsy5y1l65")
 @export var value_factor := 1.0
 ## How much the fractal speeds up after an upgrade in DP/s per additional vertex
 @export var speed_up_amount := 0.1
+## Number of points before completion
+@export var completion_points := 1000
 
 var initial_points: PackedVector2Array
 var new_points: PackedVector2Array
@@ -35,6 +38,8 @@ var started := false
 var point_value: int:
 	get():
 		return floor(pow(2, initial_point_count - 3) * value_factor)
+var points_generated: int
+var have_completed := false
 
 func start():
 	started = true
@@ -47,6 +52,7 @@ func restart():
 	timer_length = initial_timer_length
 	new_points.clear()
 	initial_points.clear()
+	points_generated = 0
 	start()
 	queue_redraw()
 	
@@ -115,5 +121,9 @@ func _draw():
 	new_points.append(new_point)
 
 func _timer():
+	points_generated += point_value
 	queue_redraw()
 	emit_signal("point_generated", point_value)
+	if points_generated >= completion_points:
+		have_completed = true
+		emit_signal("fractal_completed")

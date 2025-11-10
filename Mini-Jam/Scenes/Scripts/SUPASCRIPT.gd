@@ -13,11 +13,30 @@ extends Node3D
 @export var upgrade_labels2: Array[Label]
 @export var upgrade_labels3: Array[Label]
 var OMEGA_upgrade_labels: Array
+@onready var unlock_2: Button = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Unlock2
+@onready var unlock_3: Button = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Unlock3
+@onready var monitor_2: VBoxContainer = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2
+@onready var monitor_3: VBoxContainer = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3
+@onready var sm_percent_button: Button = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/model/percent
+@onready var sm_label: Label = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/model/sm
+@onready var progress: ColorRect = $monitors/MainMonitor/HomeScreen/SubViewport/Screen/model/progress
+
 @export var chaoses: Array[Node2D]
 
 @export var initial_speed_cost: int = 10
 @export var initial_vert_cost: int = 100
 
+var sm_percent := 0.0:
+	get():
+		var percents: Array[float]
+		for fractal in chaoses:
+			if fractal.get("have_completed") == false:
+				percents.append(100 * (float(fractal.get("points_generated")) / fractal.get("completion_points")))
+		return percents.max() if not percents.is_empty() else 0.0
+var simulation_models := 0:
+	set(value):
+		sm_label.text = str(value) + " SM"
+		simulation_models = value
 var dps:
 	set(value):
 		dps_label.text = str(value) + " DP/s"
@@ -140,6 +159,8 @@ func _on_button_pressed(monitor_idx: int, index: int) -> void:
 				curr_monitor[SPEED_COST].text = str(initial_speed_cost) + " DP"
 				curr_monitor[SPEED_LEVEL].text = "Lv. " + str(levels[monitor_idx][SPEED_UP])
 				fractal.restart()
+				progress.size.y = 250 * sm_percent / 100
+				sm_percent_button.text = "0%"
 		update_dps()
 		var new_cost = str(cost_at_level(index, levels[monitor_idx][index])) + " DP"
 		curr_monitor[cost_idx].text = new_cost
@@ -150,3 +171,31 @@ func _on_button_pressed(monitor_idx: int, index: int) -> void:
 
 func _on_chaos_point_generated(value: int) -> void:
 	data_points += value
+	if sm_percent <= 100:
+		sm_percent_button.text = str(int(sm_percent)) + "%" # Could bug out when all monitors are unlocked
+		progress.size.y = 250 * sm_percent / 100
+		
+func _on_percent_pressed() -> void:
+	if sm_percent <= 100:
+		# TODO: reset sm_percent
+		sm_percent_button.text = "0%"
+		simulation_models += 1
+		
+func _on_unlock_pressed(monitor: int) -> void:
+	if simulation_models >= 1:
+		simulation_models -= 1
+		match monitor:
+			2:
+				unlock_2.hide()
+				monitor_2.show()
+				chaoses[1].show()
+				chaoses[1].start()
+			3:
+				unlock_3.hide()
+				monitor_3.show()
+				chaoses[2].show()
+				chaoses[2].start()
+
+func _on_fractal_completed(index: int) -> void:
+	print("Fractal " + str(index) + " completed")
+	chaoses[index].set("started", false)

@@ -1,4 +1,4 @@
-[gd_scene load_steps=59 format=3 uid="uid://bbi0do3lkmc2k"]
+[gd_scene load_steps=63 format=3 uid="uid://bbi0do3lkmc2k"]
 
 [ext_resource type="Script" uid="uid://ciyur6es263k5" path="res://Scenes/Scripts/SUPASCRIPT.gd" id="1_v3fvj"]
 [ext_resource type="PackedScene" uid="uid://dbsjkou01vabv" path="res://models/desk/monitor.glb" id="2_o8g73"]
@@ -57,9 +57,18 @@ font_size = 59
 font = ExtResource("7_3j0kp")
 font_size = 38
 
-[sub_resource type="LabelSettings" id="LabelSettings_llnbm"]
-font = ExtResource("6_x0tcf")
-font_size = 143
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hryva"]
+bg_color = Color(1, 1, 1, 0.63529414)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_x0tcf"]
+bg_color = Color(0.4, 0.4, 0.4, 0.63529414)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3j0kp"]
+bg_color = Color(0.78, 0.78, 0.78, 0.63529414)
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vv80f"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_pbfpv"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_12ycv"]
 font = ExtResource("7_3j0kp")
@@ -212,8 +221,6 @@ upgrade_labels1 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/
 upgrade_labels2 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button/level")]
 upgrade_labels3 = [NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button/level"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/cost"), NodePath("monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button/level")]
 chaoses = [NodePath("monitors/monitor1/SubViewport/Chaos"), NodePath("monitors/monitor2/SubViewport/Chaos"), NodePath("monitors/monitor3/SubViewport/Chaos")]
-initial_speed_cost = 1
-initial_vert_cost = 1
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="."]
 environment = SubResource("Environment_347al")
@@ -357,16 +364,49 @@ grow_horizontal = 2
 layout_mode = 2
 
 [node name="Monitor2" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList" instance=ExtResource("8_hryva")]
+visible = false
 layout_mode = 2
 
 [node name="monitor_label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2" index="0"]
 text = "MONITOR 2: 3 VERTICES"
 
+[node name="Unlock2" type="Button" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_hryva")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x0tcf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3j0kp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv80f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pbfpv")
+text = "+ UNLOCK MONITOR 2"
+
 [node name="Monitor3" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList" instance=ExtResource("8_hryva")]
+visible = false
 layout_mode = 2
 
 [node name="monitor_label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3" index="0"]
 text = "MONITOR 3: 3 VERTICES"
+
+[node name="Unlock3" type="Button" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList"]
+visible = false
+layout_mode = 2
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_pressed_color = Color(0, 0, 0, 1)
+theme_override_font_sizes/font_size = 33
+theme_override_styles/normal = SubResource("StyleBoxFlat_hryva")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x0tcf")
+theme_override_styles/hover = SubResource("StyleBoxFlat_3j0kp")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_vv80f")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_pbfpv")
+text = "+ UNLOCK MONITOR 3"
 
 [node name="model" type="TextureRect" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen"]
 layout_mode = 1
@@ -382,24 +422,49 @@ scale = Vector2(0.5, 0.5)
 pivot_offset = Vector2(165, 165)
 texture = ExtResource("8_vv80f")
 
-[node name="percent" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
-layout_mode = 0
-offset_left = 47.0
-offset_top = 85.0
-offset_right = 283.0
-offset_bottom = 229.0
-text = "99%"
-label_settings = SubResource("LabelSettings_llnbm")
+[node name="progress" type="ColorRect" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
+show_behind_parent = true
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -72.0
+offset_right = -0.00048828125
+offset_bottom = -72.0
+grow_horizontal = 2
+grow_vertical = 0
+rotation = 3.1415927
+scale = Vector2(0.98, 1)
+pivot_offset = Vector2(166, 0)
+color = Color(0, 0.73333335, 0, 1)
 
-[node name="dps" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
+[node name="sm" type="Label" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
 layout_mode = 0
 offset_left = -51.0
 offset_top = -73.0
 offset_right = 397.69482
 offset_bottom = 21.0
-text = "1 SM"
+text = "0 SM"
 label_settings = SubResource("LabelSettings_12ycv")
 horizontal_alignment = 1
+
+[node name="percent" type="Button" parent="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model"]
+custom_minimum_size = Vector2(300, 250)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -150.00024
+offset_top = -151.0
+offset_right = 149.99976
+offset_bottom = 99.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_font_sizes/font_size = 80
+text = "0%"
 
 [node name="Quad" type="MeshInstance3D" parent="monitors/MainMonitor/HomeScreen"]
 mesh = SubResource("QuadMesh_12ycv")
@@ -556,10 +621,16 @@ bus = &"SFX"
 [connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1/add_vert/Button" to="." method="_on_button_pressed" binds= [0, 1]]
 [connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/speed_up/Button" to="." method="_on_button_pressed" binds= [1, 0]]
 [connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor2/add_vert/Button" to="." method="_on_button_pressed" binds= [1, 1]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Unlock2" to="." method="_on_unlock_pressed" binds= [2]]
 [connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/speed_up/Button" to="." method="_on_button_pressed" binds= [2, 0]]
 [connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor3/add_vert/Button" to="." method="_on_button_pressed" binds= [2, 1]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Unlock3" to="." method="_on_unlock_pressed" binds= [3]]
+[connection signal="pressed" from="monitors/MainMonitor/HomeScreen/SubViewport/Screen/model/percent" to="." method="_on_percent_pressed"]
+[connection signal="fractal_completed" from="monitors/monitor1/SubViewport/Chaos" to="." method="_on_fractal_completed" binds= [0]]
 [connection signal="point_generated" from="monitors/monitor1/SubViewport/Chaos" to="." method="_on_chaos_point_generated"]
+[connection signal="fractal_completed" from="monitors/monitor2/SubViewport/Chaos" to="." method="_on_fractal_completed" binds= [1]]
 [connection signal="point_generated" from="monitors/monitor2/SubViewport/Chaos" to="." method="_on_chaos_point_generated"]
+[connection signal="fractal_completed" from="monitors/monitor3/SubViewport/Chaos" to="." method="_on_fractal_completed" binds= [2]]
 [connection signal="point_generated" from="monitors/monitor3/SubViewport/Chaos" to="." method="_on_chaos_point_generated"]
 
 [editable path="monitors/MainMonitor/HomeScreen/SubViewport/Screen/MonitorList/Monitor1"]
