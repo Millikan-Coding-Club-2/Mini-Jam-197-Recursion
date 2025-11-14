@@ -35,33 +35,23 @@ const HOLD_INTERVAL := 1.0  # seconds
 
 @onready var sfx_player = $sfx/beeping
 
-func _process(delta):
-	if Input.is_action_pressed("mouse_left") and not up.visible:  # or "ui_select" if mapped
-		if not sfx_player.playing:
-			sfx_player.play()
-		hold_timer += delta
-		if hold_timer >= HOLD_INTERVAL:
-			hold_timer = 0.0
-			data_points += 0.25 * dps
-			points.thingy(0.25 * dps)
-	else:
-		if sfx_player.playing:
-			sfx_player.stop()
-		hold_timer = 0.0
-
 var best_fractal: Node2D
+var best_fractal_idx: int 
 var sm_percent := 0.0:
 	get():
 		var percents: Array[float]
 		var max_percent := 0.0
+		var count: int = 0
 		for fractal in chaoses:
 			var percent = 100 * (float(fractal.get("points_generated")) / fractal.get("completion_points"))
 			if (not fractal.get("have_completed")) and percent > max_percent:
 				max_percent = percent
 				best_fractal = fractal
-				percents.append(percent)
-
+				best_fractal_idx = count
+				count += 1
+			percents.append(percent)
 		return percents.max() if not percents.is_empty() else 0.0
+		
 var simulation_models := 0:
 	set(value):
 		sm_label.text = str(value) + " SM"
@@ -89,6 +79,20 @@ func _ready() -> void:
 		labels[2].text = str(initial_vert_cost) + " DP"
 	chaoses[0].start()
 	update_dps()
+	
+func _process(delta):
+	if Input.is_action_pressed("mouse_left") and not up.visible:  # or "ui_select" if mapped
+		if not sfx_player.playing:
+			sfx_player.play()
+		hold_timer += delta
+		if hold_timer >= HOLD_INTERVAL:
+			hold_timer = 0.0
+			data_points += 0.25 * dps
+			points.thingy(0.25 * dps)
+	else:
+		if sfx_player.playing:
+			sfx_player.stop()
+		hold_timer = 0.0
 
 func cost_at_level(type, level: int) -> int:
 	## TODO: I need my cookie clicker expert to revise this
@@ -212,6 +216,9 @@ func _on_chaos_point_generated(value: int) -> void:
 		
 func _on_percent_pressed() -> void:
 	if sm_percent >= 100:
+		levels[best_fractal_idx][SPEED_UP] = 1
+		OMEGA_upgrade_labels[best_fractal_idx][SPEED_COST].text = str(initial_speed_cost) + " DP"
+		OMEGA_upgrade_labels[best_fractal_idx][SPEED_LEVEL].text = "Lv. " + str(levels[best_fractal_idx][SPEED_UP])
 		best_fractal.restart()
 		sm_percent_button.text = "0%"
 		progress.size.y = 250 * sm_percent / 100
@@ -225,6 +232,7 @@ func _on_unlock_pressed(monitor: int) -> void:
 			2:
 				unlock_2.hide()
 				monitor_2.show()
+				unlock_3.show()
 				chaoses[1].show()
 				chaoses[1].start()
 			3:

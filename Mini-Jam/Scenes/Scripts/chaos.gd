@@ -44,6 +44,7 @@ var have_completed := false
 func start():
 	started = true
 	visible = true
+	new_point_colors.append(RAINBOW.sample(float(randi_range(0, initial_point_count)) / initial_point_count))
 	# Approximates random point in the shape by getting random point in circumcircle
 	initial_points = generate_polygon(initial_point_count, shape_scale)
 	
@@ -54,12 +55,14 @@ func restart():
 	new_points.clear()
 	initial_points.clear()
 	points_generated = 0
+	new_point_colors.clear()
 	start()
 	queue_redraw()
 
 func subtract(amount):
 	points_generated -= amount
-	new_points.resize(new_points.size() - amount * point_value)
+	new_points.resize(max(0, new_points.size() - amount * point_value))
+	new_point_colors.resize(max(1, new_points.size()))
 	
 func speed_up():
 	timer_length = 1 / (1 / timer_length + speed_up_amount)
@@ -107,7 +110,7 @@ func _ready() -> void:
 	timer_length = initial_timer_length
 	# Approximates random point in the shape by getting random point in circumcircle
 	initial_points = generate_polygon(initial_point_count, shape_scale)
-	new_point_colors.append(RAINBOW.sample(float(randi_range(0, initial_point_count)) / initial_point_count))
+	#new_point_colors.append(RAINBOW.sample(float(randi_range(0, initial_point_count)) / initial_point_count))
 	
 func _process(delta: float) -> void:
 	if started and (not (Engine.is_editor_hint() and !run_in_editor)):
@@ -124,7 +127,6 @@ func _draw():
 		draw_circle(new_points[i], new_point_radius, new_point_colors[i] if color_coded else default_color)
 	var new_point = random_point_in_circle(shape_scale) if new_points.is_empty() else get_next_point(initial_points, new_points[-1])
 	new_points.append(new_point)
-	
 func add_point():
 	points_generated += point_value
 	queue_redraw()

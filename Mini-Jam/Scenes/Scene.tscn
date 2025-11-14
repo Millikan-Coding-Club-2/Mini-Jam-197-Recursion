@@ -711,7 +711,7 @@ volume_db = -3.0
 bus = &"Mr Johnson"
 
 [node name="intercom_timer" type="Timer" parent="sfx/intercom"]
-wait_time = 100.0
+wait_time = 80.0
 
 [connection signal="mouse_entered" from="Control/left" to="." method="_on_left_mouse_entered"]
 [connection signal="mouse_entered" from="Control/right" to="." method="_on_right_mouse_entered"]
